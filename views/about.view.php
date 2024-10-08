@@ -1,5 +1,5 @@
 <?php
-include __DIR__.'/partials/inicio-doc.part.php/';
+include __DIR__.'/partials/inicio-doc.part.php';
 ?>
 
 <!-- Navigation Bar -->
@@ -20,7 +20,7 @@ include __DIR__.'/partials/inicio-doc.part.php/';
           <ul class="nav navbar-nav">
             <li class=" lien"><a href="index.php"><i class="fa fa-home sr-icons"></i> Home</a></li>
             <li class="active lien"><a href="#"><i class="fa fa-bookmark sr-icons"></i> About</a></li>
-            <li class=" lien"><a href="blog.html"><i class="fa fa-file-text sr-icons"></i> Blog</a></li>
+            <li class=" lien"><a href="blog.php"><i class="fa fa-file-text sr-icons"></i> Blog</a></li>
             <li><a href="contact.php"><i class="fa fa-phone-square sr-icons"></i> Contact</a></li>
           </ul>
        </div>
@@ -194,5 +194,5 @@ include __DIR__.'/partials/inicio-doc.part.php/';
    </footer>
    
    <?php
-include __DIR__.'/partials/fin-doc.part.php/';
+include __DIR__.'/partials/fin-doc.part.php';
 ?>
