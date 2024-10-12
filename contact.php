@@ -3,6 +3,7 @@
 $errores=[];
 $nombre='';
 $apellido='';
+$email='';
 $subject='';
 $texto='';
 
