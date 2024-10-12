@@ -44,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo "Mensaje: $texto<br>";
         echo "</div>";
 
-        // Borramos los valores que habia en los campos y los ponemos vacios
+        // Borramos los valores que habia en los campos y los ponemos vacios, si no se quedan los campos que hemos escrito 
         $nombre = $apellido = $email = $subject = $texto = '';
     }
 
