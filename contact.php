@@ -37,19 +37,29 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if(empty($errores)){
         echo "<div class='alert alert-info'>";
         echo "<h1>Informacion enviada</h1><br>";
-        echo "Nombre: $nombre<br>";
-        echo "Apellido: $apellido<br>";
-        echo "Correo $email<br>";
-        echo "Asunto: $subject<br>";
-        echo "Mensaje: $texto<br>";
+        echo "First Name: $nombre<br>";
+        echo "Last Name: $apellido<br>";
+        echo "Email: $email<br>";
+        echo "Subject: $subject<br>";
+        echo "Message: $texto<br>";
         echo "</div>";
 
         // Borramos los valores que habia en los campos y los ponemos vacios, si no se quedan los campos que hemos escrito 
         $nombre = $apellido = $email = $subject = $texto = '';
+    }else {
+        echo "<div class='alert alert-danger'>";
+        echo "<ul>";
+        // Recorremos los errores y los mostramos en una lista
+        foreach($errores as $error){
+            echo "<li>$error</li>";
+        }
+        echo "</ul>";
+        echo "</div>";
     }
 
     
 }
 require 'views/contact.view.php';
+
 
 ?>

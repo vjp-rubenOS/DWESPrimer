@@ -36,16 +36,8 @@ include __DIR__.'/partials/inicio-doc.part.php';
       <hr>
       <p>Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p>
 
-      <!-- Mostrar errores si los hay  Este lo he modificado yo -->
-      <?php if (!empty($errores)): ?>
-      <div class="alert alert-danger">
-        <ul>
-          <?php foreach ($errores as $error): ?>
-          <li><?php echo $error; ?></li>
-          <?php endforeach; ?>
-        </ul>
-      </div>
-      <?php endif; ?>
+
+      <!-- Que salga el error o los datos aqui -->
 
       <form class="form-horizontal" method="POST" action="contact.php">
         <div class="form-group">
