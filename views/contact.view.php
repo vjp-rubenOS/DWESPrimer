@@ -1,5 +1,5 @@
 <?php
-include __DIR__.'/partials/inicio-doc.part.php';
+include __DIR__ . '/partials/inicio-doc.part.php';
 ?>
 
 <!-- Navigation Bar -->
@@ -36,8 +36,8 @@ include __DIR__.'/partials/inicio-doc.part.php';
       <hr>
       <p>Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p>
 
-
       <!-- Que salga el error o los datos aqui -->
+      <?php mostrarMensaje($errores, $nombre, $apellido, $email, $subject, $texto); ?>
 
       <form class="form-horizontal" method="POST" action="contact.php">
         <div class="form-group">
@@ -94,5 +94,5 @@ include __DIR__.'/partials/inicio-doc.part.php';
 <!-- Principal Content End -->
 
 <?php
-include __DIR__.'/partials/fin-doc.part.php';
+include __DIR__ . '/partials/fin-doc.part.php';
 ?>

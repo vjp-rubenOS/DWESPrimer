@@ -1,65 +1,54 @@
 <?php
 
-$errores=[];
-$nombre='';
-$apellido='';
-$email='';
-$subject='';
-$texto='';
+$errores = [];
+$nombre = '';
+$apellido = '';
+$email = '';
+$subject = '';
+$texto = '';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    //Guardamos los datos del formulario con trim para quitar espacios al principio y final
-    // y usamos htmlspecialchars para "saltar" los comando que puedan meter de html
+    // Guardamos los datos del formulario con trim para quitar espacios al principio y final
+    $nombre = isset($_POST['nombre']) ? htmlspecialchars(trim($_POST['nombre'])) : '';
+    $apellido = isset($_POST['apellido']) ? htmlspecialchars(trim($_POST['apellido'])) : '';
+    $email = isset($_POST['email']) ? htmlspecialchars(trim($_POST['email'])) : '';
+    $subject = isset($_POST['subject']) ? htmlspecialchars(trim($_POST['subject'])) : '';
+    $texto = isset($_POST['texto']) ? htmlspecialchars(trim($_POST['texto'])) : '';
 
-    $nombre=isset($_POST['nombre'])?htmlspecialchars(trim($_POST['nombre'])): '';
-    $apellido=isset($_POST['apellido'])?htmlspecialchars(trim($_POST['apellido'])): '';
-    $email=isset($_POST['email'])?htmlspecialchars(trim($_POST['email'])): '';
-    $subject=isset($_POST['subject'])?htmlspecialchars(trim($_POST['subject'])): '';
-    $texto=isset($_POST['texto'])?htmlspecialchars(trim($_POST['texto'])): '';
-
-    // validamos los campos que son obligatorios
-    // Campo nombre
-    if(empty($nombre)){
-        $errores[]="El campo First Name no puede estar vacio";
+    // Validamos los campos obligatorios
+    if (empty($nombre)) {
+        $errores[] = "El campo First Name no puede estar vacío.";
     }
-    //Campo email, que no solo validamos si esta vacion sino que tenga el formato adecuado
-    if(empty($email)){
-        $errores[]=" El campo Email no puede estar vacio";
-    }elseif(!filter_var($email,FILTER_VALIDATE_EMAIL)){
-        $errores[]="Email incorrecto";
+    if (empty($email)) {
+        $errores[] = "El campo Email no puede estar vacío.";
+    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $errores[] = "Formato de email incorrecto.";
     }
-
-    //Campo asunto
-    if(empty($subject)){
-        $errores[]="El campo subject no puede estar vacio";
+    if (empty($subject)) {
+        $errores[] = "El campo Subject no puede estar vacío.";
     }
-    // Si no hya errores mostramos la informacion de los campos
-    if(empty($errores)){
-        echo "<div class='alert alert-info'>";
-        echo "<h1>Informacion enviada</h1><br>";
-        echo "First Name: $nombre<br>";
-        echo "Last Name: $apellido<br>";
-        echo "Email: $email<br>";
-        echo "Subject: $subject<br>";
-        echo "Message: $texto<br>";
-        echo "</div>";
+}
 
-        // Borramos los valores que habia en los campos y los ponemos vacios, si no se quedan los campos que hemos escrito 
-        $nombre = $apellido = $email = $subject = $texto = '';
-    }else {
-        echo "<div class='alert alert-danger'>";
-        echo "<ul>";
-        // Recorremos los errores y los mostramos en una lista
-        foreach($errores as $error){
+// Función para mostrar el mensaje de error o éxito directamente
+function mostrarMensaje($errores, $nombre, $apellido, $email, $subject, $texto)
+{
+    if (!empty($errores)) {
+        // Si hay errores, mostramos la lista de errores
+        echo "<div class='alert alert-danger'><ul>";
+        foreach ($errores as $error) {
             echo "<li>$error</li>";
         }
-        echo "</ul>";
+        echo "</ul></div>";
+    } elseif ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        // Si no hay errores, mostramos la información enviada
+        echo "<div class='alert alert-info'>";
+        echo "First Name: " . htmlspecialchars($nombre) . "<br>";
+        echo "Last Name: " . htmlspecialchars($apellido) . "<br>";
+        echo "Email: " . htmlspecialchars($email) . "<br>";
+        echo "Subject: " . htmlspecialchars($subject) . "<br>";
+        echo "Message: " . htmlspecialchars($texto) . "<br>";
         echo "</div>";
     }
-
-    
 }
+
 require 'views/contact.view.php';
-
-
-?>
