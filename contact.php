@@ -52,3 +52,5 @@ function mostrarMensaje($errores, $nombre, $apellido, $email, $subject, $texto)
 }
 
 require 'views/contact.view.php';
+require 'utils/utils.php';
+?>
