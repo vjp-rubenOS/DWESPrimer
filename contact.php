@@ -50,7 +50,7 @@ function mostrarMensaje($errores, $nombre, $apellido, $email, $subject, $texto)
         echo "</div>";
     }
 }
-
-require 'views/contact.view.php';
 require 'utils/utils.php';
+require 'views/contact.view.php';
+
 ?>
