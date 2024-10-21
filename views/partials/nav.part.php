@@ -14,12 +14,27 @@
     </div>
     <div class="collapse navbar-collapse navbar-right" id="menu">
       <ul class="nav navbar-nav">
-        <li class="<?php echo esOpcionMenuActiva("/index.php")? "active" : ""?> lien"><a href="<?php echo esOpcionMenuActiva("/index.php")? "#" : "index.php"?>"><i class="fa fa-home sr-icons"></i> Home</a></li>
-        <li class="<?php echo esOpcionMenuActiva("/about.php")? "active" : ""?> lien"><a href="<?php echo esOpcionMenuActiva("/about.php")? "#" : "about.php" ?>"><i class="fa fa-bookmark sr-icons"></i> About</a></li>
-        <li class="<?php echo esOpcionMenuActiva("/blog.php")? "active" : ""?> lien"><a href="<?php echo esOpcionMenuActiva("/blog.php")? "#" : "blog.php" ?>"><i class="fa fa-file-text sr-icons"></i> Blog</a></li>
-        <li class= "<?php echo esOpcionMenuActiva("/contact.php")? "active" : ""?>"><a href="<?php echo esOpcionMenuActiva("/contact.php")? "#" : "contact.php" ?>"><i class="fa fa-phone-square sr-icons"></i> Contact</a></li>
+        <li class="<?php echo esOpcionMenuActiva("/index.php") ? "active" : "" ?> lien">
+          <a href="<?php echo esOpcionMenuActiva("/index.php") ? "#" : "index.php" ?>">
+            <i class="fa fa-home sr-icons"></i> Home
+          </a>
+        </li>
+        <li class="<?php echo esOpcionMenuActiva("/about.php") ? "active" : "" ?> lien">
+          <a href="<?php echo esOpcionMenuActiva("/about.php") ? "#" : "about.php" ?>">
+            <i class="fa fa-bookmark sr-icons"></i> About
+          </a>
+        </li>
+        <li class="<?php echo existeOpcionMenuActivaEnArray(['/blog.php', '/single_post.php']) ? 'active' : '' ?> lien">
+          <a href="<?php echo esOpcionMenuActiva("/blog.php") ? "#" : "blog.php" ?>">
+            <i class="fa fa-file-text sr-icons"></i> Blog
+          </a>
+        </li>
+        <li class="<?php echo esOpcionMenuActiva("/contact.php") ? "active" : "" ?>">
+          <a href="<?php echo esOpcionMenuActiva("/contact.php") ? "#" : "contact.php" ?>">
+            <i class="fa fa-phone-square sr-icons"></i> Contact
+          </a>
+        </li>
       </ul>
     </div>
   </div>
 </nav>
-<!-- End of Navigation Bar →
