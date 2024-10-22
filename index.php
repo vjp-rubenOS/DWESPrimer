@@ -6,7 +6,7 @@ require 'entities/ImagenGaleria.class.php';
 $imagenes=[];
 
 for($i=0;$i<=12;$i++){
-    $imagenGaleria= new ImagenGaleria($i.'.jpg','imagen'.$i,rand()*5000,rand()*5000,rand()*5000);
+    $imagenGaleria= new ImagenGaleria($i.'.jpg','imagen'.$i,rand(0,1000),rand(0,1000),rand(0,1000));
     $imagenes[]=$imagenGaleria;
 
    
