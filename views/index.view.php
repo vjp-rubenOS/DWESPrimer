@@ -46,8 +46,11 @@ include __DIR__ . '/partials/nav.part.php';
       <!-- First Category pictures -->
       <div id="category1" class="tab-pane active">
         <div class="row popup-gallery">
+          <!---primera imagen--->
           <div class="col-xs-12 col-sm-6 col-md-3">
+            
             <div class="sol">
+              
               <img class="img-responsive" src="images/index/portfolio/1.jpg" alt="First category picture">
               <div class="behind">
                 <div class="head text-center">
@@ -85,6 +88,7 @@ include __DIR__ . '/partials/nav.part.php';
             </div>
           </div>
           <div class="col-xs-12 col-sm-6 col-md-3">
+            <!---segunda imagen--->
             <div class="sol">
               <img class="img-responsive" src="images/index/portfolio/2.jpg" alt="First category picture">
               <div class="behind">
@@ -122,6 +126,7 @@ include __DIR__ . '/partials/nav.part.php';
               </div>
             </div>
           </div>
+          <!---tercera imagen--->
           <div class="col-xs-12 col-sm-6 col-md-3">
             <div class="sol">
               <img class="img-responsive" src="images/index/portfolio/3.jpg" alt="First category picture">
