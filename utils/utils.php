@@ -11,18 +11,18 @@ function esOpcionMenuActiva(string $opcionMenu): bool
     return $_SERVER['REQUEST_URI'] === $opcionMenu;
 }
 
-// Función para verificar si alguna de las opciones del array esta activa
+// Funcion para verificar si alguna de las opciones del array esta activa
 // Recibe un array que contiene varias rutas de opciones del menu.
 function existeOpcionMenuActivaEnArray(array $opcionesMenu): bool
 {
     // Recorre el array.
     foreach ($opcionesMenu as $opcion) {
-        // Para cada opción, llama a la funcion creada antes 'esOpcionMenuActiva' para verificar si esta activa.
+        // Para cada opcion, llama a la funcion creada antes 'esOpcionMenuActiva' para verificar si esta activa.
         // Si alguna de las opciones está activa, retorna true.
         if (esOpcionMenuActiva($opcion)) {
             return true;
         }
     }
-    // Si ninguna de las opciones del array está activa, retorna false.
+    // Si ninguna de las opciones del array esta activa, retorna false.
     return false;
 }
