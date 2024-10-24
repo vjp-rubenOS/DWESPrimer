@@ -34,6 +34,16 @@ class ImagenGaleria{
         $this->numDownloads=$numDownloads;
         
     }
+    const RUTA_IMAGENES_PORTFOLIO='images/index/portfolio/';// quitado barrita principio
+    const RUTA_IMAGENES_GALLERY='images/index/gallery/';
+
+    public function getUrlPortfolio():string{
+        return self::RUTA_IMAGENES_PORTFOLIO.$this->getNombre();
+
+    }
+    public function getUrlGallery():string{
+        return self::RUTA_IMAGENES_GALLERY.$this->getNombre();
+    }
 
     /**
      * Get the value of nombre
@@ -142,16 +152,7 @@ class ImagenGaleria{
 
         return $this;
     }
-    const RUTA_IMAGENES_PORTFOLIO='images/index/portfolio/';// quitado barrita principio
-    const RUTA_IMAGENES_GALLERY='images/index/gallery/';
-
-    public function getUrlPortfolio():string{
-        return self::RUTA_IMAGENES_PORTFOLIO.$this->getNombre();
-
-    }
-    public function getUrlGallery():string{
-        return self::RUTA_IMAGENES_GALLERY.$this->getNombre();
-    }
+    
 }
 
 
