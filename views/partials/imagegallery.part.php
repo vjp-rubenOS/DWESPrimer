@@ -2,12 +2,14 @@
     <?php shuffle($imagen); foreach ($imagenesCategoria as $imagen): ?>
         <div class="col-xs-12 col-sm-6 col-md-3">
             <div class="sol">
-                <img class="img-responsive" src="images/index/portfolio/<?php echo $imagen->getNombre(); ?>" alt="<?php echo $imagen->getDescripcion(); ?>">
+                <!-- Usando la constante RUTA_IMAGENES_PORTFOLIO mediante getUrlPortfolio() -->
+                <img class="img-responsive" src="<?php echo $imagen->getUrlPortfolio(); ?>" alt="<?php echo $imagen->getDescripcion(); ?>">
                 <div class="behind">
                     <div class="head text-center">
                         <ul class="list-inline">
                             <li>
-                                <a class="gallery" href="images/index/gallery/<?php echo $imagen->getNombre(); ?>" data-toggle="tooltip" data-original-title="Quick View">
+                                <!-- Usando la constante RUTA_IMAGENES_GALLERY mediante getUrlGallery() -->
+                                <a class="gallery" href="<?php echo $imagen->getUrlGallery(); ?>" data-toggle="tooltip" data-original-title="Quick View">
                                     <i class="fa fa-eye"></i>
                                 </a>
                             </li>
@@ -40,6 +42,8 @@
         </div>
     <?php endforeach; ?>
 </div>
+
+<!-- Paginación -->
 <nav class="text-center">
     <ul class="pagination">
         <li class="active"><a href="#">1</a></li>
