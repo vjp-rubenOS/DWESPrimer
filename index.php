@@ -18,6 +18,7 @@ $categorias = [
 // Obtener la categoría activa de la URL o asignar una por defecto
 $categoriaActiva = $_GET['categoria'] ?? 'category1';
 
+
 // Validar la categoría
 if (!array_key_exists($categoriaActiva, $categorias)) {
     $categoriaActiva = 'category1';
@@ -25,6 +26,7 @@ if (!array_key_exists($categoriaActiva, $categorias)) {
 
 // Obtener las imágenes correspondientes a la categoría activa
 $imagenesCategoria = $categorias[$categoriaActiva];
+shuffle($imagenesCategoria); // Barajar el array de imágenes para que el orden sea aleatorio
 
 // Renderizar la vista principal
 require 'views/index.view.php';
