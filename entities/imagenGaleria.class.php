@@ -34,7 +34,7 @@ class ImagenGaleria{
         $this->numDownloads=$numDownloads;
         
     }
-    const RUTA_IMAGENES_PORTFOLIO='images/index/portfolio/';// quitado barrita principio
+    const RUTA_IMAGENES_PORTFOLIO='images/index/portfolio/';// quitado barrita principio(y los puntos)
     const RUTA_IMAGENES_GALLERY='images/index/gallery/';
 
     public function getUrlPortfolio():string{
