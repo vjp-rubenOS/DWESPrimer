@@ -1,5 +1,5 @@
 <div class="row popup-gallery">
-    <?php shuffle($imagen); foreach ($imagenesCategoria as $imagen): ?>
+    <?php foreach ($imagenesCategoria as $imagen): ?>
         <div class="col-xs-12 col-sm-6 col-md-3">
             <div class="sol">
                 <!-- Usando la constante RUTA_IMAGENES_PORTFOLIO mediante getUrlPortfolio() -->

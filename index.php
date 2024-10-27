@@ -23,8 +23,9 @@ if (!array_key_exists($categoriaActiva, $categorias)) {
     $categoriaActiva = 'category1';
 }
 
-// Obtener las imágenes correspondientes a la categoría activa
+// Obtener las imágenes correspondientes a la categoría activa y aplicar shuffle
 $imagenesCategoria = $categorias[$categoriaActiva];
+shuffle($imagenesCategoria); // Barajar el array de imágenes para que el orden sea aleatorio
 
 // Renderizar la vista principal
 require 'views/index.view.php';
