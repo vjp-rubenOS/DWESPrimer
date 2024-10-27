@@ -1,5 +1,7 @@
-<?php include __DIR__ . '/partials/inicio-doc.part.php'; ?>
-<?php include __DIR__ . '/partials/nav.part.php'; ?>
+<?php
+include __DIR__ . '/partials/inicio-doc.part.php';
+include __DIR__ . '/partials/nav.part.php';
+?>
 
 <!-- Principal Content Start -->
 <div id="index">
@@ -25,6 +27,7 @@
       <table class="table text-center">
         <thead>
           <tr>
+            <!-- Cambiamos los enlaces para que cada uno cargue la categoría correcta -->
             <td><a class="link <?php echo ($categoriaActiva === 'category1') ? 'active' : ''; ?>" href="index.php?category1">Category I</a></td>
             <td><a class="link <?php echo ($categoriaActiva === 'category2') ? 'active' : ''; ?>" href="index.php?category2">Category II</a></td>
             <td><a class="link <?php echo ($categoriaActiva === 'category3') ? 'active' : ''; ?>" href="index.php?category3">Category III</a></td>
@@ -36,9 +39,8 @@
 
     <!-- Gallery Content -->
     <div class="tab-content">
-      <div id="<?php echo $categoriaActiva; ?>" class="tab-pane active">
-        <?php include __DIR__ . '/partials/imagegallery.part.php'; ?>
-      </div>
+      <!-- Solo mostramos el partial para la categoría activa -->
+      <?php include __DIR__ . '/partials/imagegallery.part.php'; ?>
     </div><!-- End of Gallery Content -->
 
   </div><!-- End of Index-body box -->
