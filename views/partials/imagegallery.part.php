@@ -1,5 +1,5 @@
 <div class="row popup-gallery">
-    <?php foreach ($imagenesCategoria as $imagen): ?>
+    <?php shuffle($imagen); foreach ($imagenesCategoria as $imagen): ?>
         <div class="col-xs-12 col-sm-6 col-md-3">
             <div class="sol">
                 <img class="img-responsive" src="images/index/portfolio/<?php echo $imagen->getNombre(); ?>" alt="<?php echo $imagen->getDescripcion(); ?>">

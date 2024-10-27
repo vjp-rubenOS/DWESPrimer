@@ -25,9 +25,9 @@
       <table class="table text-center">
         <thead>
           <tr>
-            <td><a class="link <?php echo ($categoriaActiva === 'category1') ? 'active' : ''; ?>" href="index.php?categoria=category1">Category I</a></td>
-            <td><a class="link <?php echo ($categoriaActiva === 'category2') ? 'active' : ''; ?>" href="index.php?categoria=category2">Category II</a></td>
-            <td><a class="link <?php echo ($categoriaActiva === 'category3') ? 'active' : ''; ?>" href="index.php?categoria=category3">Category III</a></td>
+            <td><a class="link <?php echo ($categoriaActiva === 'category1') ? 'active' : ''; ?>" href="index.php?category1">Category I</a></td>
+            <td><a class="link <?php echo ($categoriaActiva === 'category2') ? 'active' : ''; ?>" href="index.php?category2">Category II</a></td>
+            <td><a class="link <?php echo ($categoriaActiva === 'category3') ? 'active' : ''; ?>" href="index.php?category3">Category III</a></td>
           </tr>
         </thead>
       </table>
