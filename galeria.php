@@ -1,7 +1,8 @@
 <?php
 require 'utils/utils.php';
-require 'utils/File.class.php';
-//require'exceptions7FileException.class.php':
+require 'entities/File.class.php'; // me esta dando problemas aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+
+// require'exceptions7FileException.class.php':
 //array para guardar los mensajes de los errores
 
 $errores =[];

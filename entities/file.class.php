@@ -1,5 +1,5 @@
 <?php 
-require __DIR__.'exceptions/FileException.class.php'; 
+include __DIR__.'exceptions/FileException.class.php'; 
 class File{
     private $file;
     private $fileName;
