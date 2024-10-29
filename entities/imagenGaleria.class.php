@@ -1,159 +1,71 @@
 <?php
-class ImagenGaleria{
-    /**
-     * @var string
-     */
-    private $nombre;
-     /**
-     * @var string
-     */
-    
-    private $descripcion;
-     /**
-     * @var int
-     */
+    class imagenGaleria{
+        private $nombre;
+        private $descripcion;
+        private $numVisualizaciones;
+        private $numLikes;
+        private $numDownloads;
 
-    private $numVisualizaciones;
-     /**
-     * @var int
-     */
+        const RUTA_IMAGENES_PORTFOLIO = "/images/index/portfolio/";
+        const RUTA_IMAGENES_GALLERY = "/images/index/gallery/";
 
-    private $numLikes;
+        public function __construct($nombre, $descripcion, $numVisualizaciones, $numLikes, $numDownloads){
+            $this->nombre = $nombre;
+            $this->descripcion = $descripcion;
+            $this->numVisualizaciones = $numVisualizaciones;
+            $this->numLikes = $numLikes;
+            $this->numDownloads = $numDownloads;
+        }
 
-     /**
-     * @var int
-     */
-    private $numDownloads;
+        public function getNombre(){
+            return $this->nombre;
+        }
 
-    public function __construct(string $nombre,string $descripcion,int $numVisualizaciones=0,int $numLikes=0,int $numDownloads=0)
-    {   // Podemos pasarle solo el nombre y la descripcion y el resto por defecto sera 0
-        $this->nombre=$nombre;
-        $this->descripcion=$descripcion;
-        $this->numVisualizaciones=$numVisualizaciones;
-        $this->numLikes=$numLikes;
-        $this->numDownloads=$numDownloads;
-        
+        public function getDescripcion(){
+            return $this->descripcion;
+        }
+
+        public function getNumVisualizaciones(){
+            return $this->numVisualizaciones;
+        }
+
+        public function getNumLikes(){
+            return $this->numLikes;
+        }
+
+        public function getNumDownloads(){
+            return $this->numDownloads;
+        }
+
+        public function setNombre($nombre){
+            $this->nombre = $nombre;
+        }
+
+        public function setDescripcion($descripcion){
+            $this->descripcion = $descripcion;
+        }
+
+        public function setNumVisualizaciones($numVisualizaciones){
+            $this->numVisualizaciones = $numVisualizaciones;
+        }
+
+        public function setNumLikes($numLikes){
+            $this->numLikes = $numLikes;
+        }
+
+        public function setNumDownloads($numDownloads){
+            $this->numDownloads = $numDownloads;
+        }
+
+
+        public function getUrlPortfolio(){
+            return self::RUTA_IMAGENES_PORTFOLIO.$this->getNombre();
+        }
+
+        public function getUrlGallery(){
+            return self::RUTA_IMAGENES_GALLERY.$this->getNombre();
+        }
+
+
     }
-    const RUTA_IMAGENES_PORTFOLIO='images/index/portfolio/';// quitado barrita principio(y los puntos)
-    const RUTA_IMAGENES_GALLERY='images/index/gallery/';
-
-    public function getUrlPortfolio():string{
-        return self::RUTA_IMAGENES_PORTFOLIO.$this->getNombre();
-
-    }
-    public function getUrlGallery():string{
-        return self::RUTA_IMAGENES_GALLERY.$this->getNombre();
-    }
-
-    /**
-     * Get the value of nombre
-     *
-     * @return  string
-     */ 
-    public function getNombre():string
-    {
-        return $this->nombre;
-    }
-
-    /**
-     * Set the value of nombre
-     *
-     * @param  string  $nombre
-     *
-     * @return  self
-     */ 
-    public function setNombre(string $nombre)
-    {
-        $this->nombre = $nombre;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of descripcion
-     */ 
-    public function getDescripcion():string
-    {
-        return $this->descripcion;
-    }
-
-    /**
-     * Set the value of descripcion
-     *
-     * @return  self
-     */ 
-    public function setDescripcion($descripcion)
-    {
-        $this->descripcion = $descripcion;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of numVisualizaciones
-     */ 
-    public function getNumVisualizaciones():int
-    {
-        return $this->numVisualizaciones;
-    }
-
-    /**
-     * Set the value of numVisualizaciones
-     *
-     * @return  self
-     */ 
-    public function setNumVisualizaciones($numVisualizaciones)
-    {
-        $this->numVisualizaciones = $numVisualizaciones;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of numLikes
-     */ 
-    public function getNumLikes():int
-    {
-        return $this->numLikes;
-    }
-
-    /**
-     * Set the value of numLikes
-     *
-     * @return  self
-     */ 
-    public function setNumLikes($numLikes)
-    {
-        $this->numLikes = $numLikes;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of numDownloads
-     *
-     * @return  int
-     */ 
-    public function getNumDownloads():int
-    {
-        return $this->numDownloads;
-    }
-
-    /**
-     * Set the value of numDownloads
-     *
-     * @param  int  $numDownloads
-     *
-     * @return  self
-     */ 
-    public function setNumDownloads(int $numDownloads)
-    {
-        $this->numDownloads = $numDownloads;
-
-        return $this;
-    }
-    
-}
-
-
 ?>
