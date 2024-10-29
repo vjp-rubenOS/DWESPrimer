@@ -37,7 +37,7 @@
                 <div class="form-group">
                     <div class="col-xs-12">
                         <label class="form-control">Descripcion</label>
-                        <textarea class="form-control" name="descripcion" ><?$descripcion?></textarea>
+                        <textarea class="form-control" name="descripcion" ><?=$descripcion?></textarea>
                         <button class="pull-right btn btn-lg sr-button">ENVIAR</button>
 
                     </div>
