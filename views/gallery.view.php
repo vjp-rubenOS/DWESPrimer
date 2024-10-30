@@ -29,7 +29,7 @@
             <form class="form-horizontal" method="post" enctype="multipart/form-data" action="<?=$_SERVER['PHP_SELF']?>">
                 <div class="form-group">
                     <div class="col-xs-12">
-                        <label for="label-control">Imagen</label>
+                        <label class="label-control">Imagen</label>
                         <input class="form-control-file" type="file" name="imagen">
                     </div>
 

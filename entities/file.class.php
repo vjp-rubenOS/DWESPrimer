@@ -1,5 +1,7 @@
 <?php 
 include __DIR__.'exceptions/FileException.class.php'; 
+
+
 class File{
     private $file;
     private $fileName;
@@ -55,6 +57,27 @@ class File{
     }
     public function getFileName(){
         return $this->fileName;
+    }
+    public function saveUploadFile(string $rutaDestino){
+        //Compruebo que el fichero temporal con el que vamos a trabajas se 
+        //haya subido previamente por peticion Post
+        if(is_uploaded_file($this->file['tmp_name'])===false){
+            throw new FileException('El archivo no se ha subido mediante el formulario');
+        }
+        //Cargamos el nombre del fichero
+        $this->fileName=$this->file['name'];//nombre orifinal del fichero cuando se subio
+        $ruta=$rutaDestino.$this->fileName;//concateno la rutaDestino con el nombre del fichero
+        //Comprobamos que la ruta no se corresponda con un fichero que ya exista
+        if(is_file($ruta)==true){
+            //no sobreescribo,sino que genero uno nuevo añadiendo la fecha y hotra actual
+            $fechaActual=date('dmYHis');
+            $this->fileName=$this->fileName.'_'.$fechaActual;
+            $ruta=$rutaDestino.$this->fileName;//Actualiza la variable ruta con el nuevo nombre
+        }
+        //muevo el fichero subido del directorio temporal(viene definido en php.ini)
+        if(move_uploaded_file($this->file['tmp_name'],$ruta)===false){
+            throw new FileException("No se puede mover el fichero a su destino");
+        }
     }
     
 }

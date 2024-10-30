@@ -1,7 +1,7 @@
 <?php
 require 'utils/utils.php';
-require 'entities/File.class.php'; // me esta dando problemas aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-
+require 'entities/file.class.php'; // me esta dando problemas aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+require 'entities/imagenGaleria.class.php';
 // require'exceptions7FileException.class.php':
 //array para guardar los mensajes de los errores
 
@@ -15,6 +15,7 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
     $imagen = new File('imagen',$tiposAceptados);
     //el parametro fileName es 'imagen' porque asi lo indicamos en
     //en el formulario (type='file' name='imagen')
+    $imagen->saveUploadFile(imagenGaleria::RUTA_IMAGENES_GALLERY);
     $mensaje = 'Datos enviados';
 
     }
