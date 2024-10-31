@@ -1,5 +1,5 @@
 <?php 
-include __DIR__.'exceptions/FileException.class.php'; 
+include_once 'exceptions/FileException.class.php'; 
 
 
 class File{
@@ -12,7 +12,7 @@ class File{
      * @param array $arrayTypes
      * @throws FileException
      */
-    public function _construct(string $fileName, array $arrType){
+    public function __construct(string $fileName, array $arrType){
         // con $fileName obtendremos el fichero mediante el array $_FILES que con
         //todos los ficheros que se suben al servidor mediante un formulario.
         $this->file=$_FILES[$fileName];

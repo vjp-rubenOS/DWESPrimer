@@ -1,5 +1,5 @@
-<?php include __DIR__.'/partials/inicio-doc.part.php';?>
-<?php include __DIR__.'/partials/nav.part.php';?>
+<?php include 'partials/inicio-doc.part.php';?>
+<?php include 'partials/nav.part.php';?>
 <!-- Principal Content Start --->
     <div class="container">
         <div class="col-xs-12 col-sm-8 col-sm-push-2">
@@ -18,7 +18,7 @@
                         <p><?=$mensaje ?></p>
                     <?php else : ?>
                         <ul>
-                            <?php foreach ($erores as $error):?>
+                            <?php foreach ($errores as $error):?>
                                 <li><?=$error?></li>
                             <?php endforeach; ?>
                         </ul>
@@ -52,6 +52,6 @@
 
 </div>
 <!-- Principal content Start -->
-<?php include __DIR__.'/partials/fin-doc.part.php';?>
+<?php include 'partials/fin-doc.part.php';?>
 
 
