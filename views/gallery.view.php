@@ -52,6 +52,6 @@
 
 </div>
 <!-- Principal content Start -->
-<?php include 'partials/fin-doc.part.php';?>
+<?php include __DIR__ . '/partials/fin-doc.part.php' ?>
 
 
