@@ -2,6 +2,7 @@
 
 require "utils/utils.php";
 require "entities/imagenGaleria.class.php";
+require "entities/Partner.class.php";
 
 
 $imagenes = [];
