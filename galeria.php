@@ -1,6 +1,6 @@
 <?php
 require_once 'utils/utils.php';
-require_once 'entities/file.class.php'; // me esta dando problemas aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+require_once 'entities/file.class.php'; 
 require_once 'entities/imagenGaleria.class.php';
 require_once 'exceptions/FileException.class.php';
 //array para guardar los mensajes de los errores
