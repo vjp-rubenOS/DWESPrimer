@@ -60,8 +60,10 @@ class File{
     public function getFileName(){
         return $this->fileName;
     }
-    /**
-     * 
+   /**
+     * Guarda el archivo en la ubicacion indicada
+     * @param string $rutaDestino donde se guardara el archivo
+     * @throws FileException Lanza la excepcion
      */
     public function saveUploadFile(string $rutaDestino) {
         // Verifica que el archivo haya sido subido mediante una solicitud POST
@@ -69,22 +71,21 @@ class File{
             throw new FileException('El archivo no se ha subido mediante el formulario');
         }
     
-        // Extrae el nombre y extensión del archivo
-        $nombreBase = pathinfo($this->file['name'], PATHINFO_FILENAME);
-        $extension = pathinfo($this->file['name'], PATHINFO_EXTENSION);
+        // con pathinfo se puede separar el nombre de la extension
+        $nombreBase = pathinfo($this->file['name'], PATHINFO_FILENAME);// Este sirve para extraer el nombre
+        $extension = pathinfo($this->file['name'], PATHINFO_EXTENSION);// Este sirve para extraer la extension
         
-        // Define la ruta inicial y el contador
-        $contador = 1;
-        $ruta = $rutaDestino . $this->file['name'];
+     
+        $contador = 1; // contado con el numero que tendra la imagen si se repite 
+        $ruta = $rutaDestino . $this->file['name'];//Ruta 
     
-        // Si el archivo ya existe, agrega un número al nombre
+        // Si el archivo ya existe,pone un numero despues del nombre y antes de la extension
         while (file_exists($ruta)) {
             $this->fileName = $nombreBase . "_$contador." . $extension;
             $ruta = $rutaDestino . $this->fileName;
             $contador++;
         }
-    
-        // Si no se han encontrado duplicados, usa el nombre original
+        // si no esta duplicado usa el nombre original
         if ($contador === 1) {
             $this->fileName = $this->file['name'];
         }
@@ -103,14 +104,17 @@ class File{
     public function copyFile (string $rutaOrigen,string $rutaDestino){
         $origen = $rutaOrigen.$this->fileName;
         $destino = $rutaDestino.$this->fileName;
+        // Verifica que el archivo de origen exista
         if(is_file($origen)==false){
             throw new FileException("No existe el fichero $origen que intentas copiar");
 
         }
+        // Verifica si el archivo de destino ya existe
         if(is_file($destino)==true){
             throw new FileException("El fichero $destino ya existe y no se puede sobreescribir");
 
         }
+        // Copia el archivo de origen al destino
         if(copy($origen,$destino)==false){
             throw new FileException("No se ha podido copiar el fichero $origen a $destino");
         }
