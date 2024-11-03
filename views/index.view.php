@@ -54,7 +54,7 @@
     <div class="tab-content">
       <?php foreach ($categories as $category): ?>
         <div id="<?= $category['id'] ?>" class="tab-pane <?= $category['isActive'] ? 'active' : '' ?>">
-          <?php include __DIR__ . '/partials/imagegallery.part.php' ?>
+          <?php include  'partials/imagegallery.part.php' ?>
         </div>
       <?php endforeach; ?>
     </div>
@@ -130,4 +130,4 @@
   </div>
 </footer>
 
-<?php include_once 'partials/fin-doc.part.php' ?>
+<?php include __DIR__ . '/partials/fin-doc.part.php' ?>
