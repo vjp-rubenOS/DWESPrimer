@@ -6,6 +6,8 @@ class File{
     private $file;
     private $fileName;
 
+
+
     /**
      * File constructor
      * @param string $fileName
@@ -58,6 +60,9 @@ class File{
     public function getFileName(){
         return $this->fileName;
     }
+    /**
+     * 
+     */
     public function saveUploadFile(string $rutaDestino){
         //Compruebo que el fichero temporal con el que vamos a trabajas se 
         //haya subido previamente por peticion Post
@@ -77,6 +82,26 @@ class File{
         //muevo el fichero subido del directorio temporal(viene definido en php.ini)
         if(move_uploaded_file($this->file['tmp_name'],$ruta)===false){
             throw new FileException("No se puede mover el fichero a su destino");
+        }
+    }
+    /**
+     * @param string $rutaOrigen
+     * @param string $rutaDestino
+     * @throws FileException
+     */
+    public function copyFile (string $rutaOrigen,string $rutaDestino){
+        $origen = $rutaOrigen.$this->fileName;
+        $destino = $rutaDestino.$this->fileName;
+        if(is_file($origen)===false){
+            throw new FileException("No existe el fichero $origen que intentas copiar");
+
+        }
+        if(is_file($destino)===true){
+            throw new FileException("El fichero $destino ya existe y no se puede sobreescribir");
+
+        }
+        if(copy($origen,$destino)===false){
+            throw new FileException("No se ha podido copiar el fichero $origen a $destino");
         }
     }
     
