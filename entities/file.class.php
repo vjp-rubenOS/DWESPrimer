@@ -1,5 +1,7 @@
 <?php 
 include_once 'exceptions/FileException.class.php'; 
+require_once 'utils/const.php';
+
 
 
 class File{
@@ -23,35 +25,35 @@ class File{
         //Comprobamos que es array contiene el fichero
         if(!isset($this->file)){
             //Mostrar un error
-            throw new FileException('Debes seleccionar un fichero');
+            throw new FileException(getErrorString(UPLOAD_ERR_NO_FILE));
         }
-
+        // YA CON LA FUNCION DE ERRORES NO HARIA FALTA EL SWITCH CASE 
         //verificamos si ha habido algun error durante la subida del fichero
-       if($this->file['error'] !== UPLOAD_ERR_OK){
+       //if($this->file['error'] !== UPLOAD_ERR_OK){
         //Dentro del if verificamos de que tipo ha sido el error
-        switch($this->file['error']){
-            case UPLOAD_ERR_INI_SIZE:
-            case UPLOAD_ERR_FORM_SIZE:{
+        //switch($this->file['error']){
+            //case UPLOAD_ERR_INI_SIZE:
+           // case UPLOAD_ERR_FORM_SIZE:{
                 //Algun problema con el tamaño del fichero(php.ini)
-                throw new FileException('El fichero es demasiado grande');
-                break;
-            }
-            case UPLOAD_ERR_PARTIAL:{
+             //   throw new FileException('El fichero es demasiado grande');
+               // break;
+            //}
+            //case UPLOAD_ERR_PARTIAL:{
                 //Error en la trasferencia -subida incompleta
-                throw new FileException('No se ha podido subir el fichero completo');
+              //  throw new FileException('No se ha podido subir el fichero completo');
 
-                break;
-            }
-            default:{
+               // break;
+            //}
+            //default:{
                 //Error en la subida del fichero
-                throw new FileException('No se ha podido subir el fichero');
-                break;
-            }
+              //  throw new FileException('No se ha podido subir el fichero');
+                //break;
+           // }
 
-        }
-       }
+       // }
+       //}
        if(in_array($this->file['type'],$arrType)===false){
-        throw new FileException('Tipo de fichero no soportado');
+        throw new FileException(getErrorString(UPLOAD_ERR_EXTENSION));
         //Error,tipo no soportado
         
        }
@@ -92,7 +94,7 @@ class File{
     
         // Mueve el archivo subido a la ruta destino final
         if (!move_uploaded_file($this->file['tmp_name'], $ruta)) {
-            throw new FileException("No se puede mover el fichero a su destino");
+            throw new FileException(getErrorString(ERROR_MV_UP_FILE));
         }
     }
     
