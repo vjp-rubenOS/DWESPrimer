@@ -2,7 +2,7 @@
     class Connection{
         public static function make(){
             $option=[
-                PDO::MYSQL_ATTR_INIT_COMMAND=>'SET NAME utf8',
+                PDO::MYSQL_ATTR_INIT_COMMAND=>'SET NAMES utf8',
                 PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION,
                 PDO::ATTR_PERSISTENT=>true
             ];

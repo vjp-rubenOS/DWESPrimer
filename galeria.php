@@ -3,6 +3,7 @@ require_once 'utils/utils.php';
 require_once 'entities/file.class.php';
 require_once 'entities/imagenGaleria.class.php';
 require_once 'exceptions/FileException.class.php';
+require_once 'entities/connection.class.php';
 //array para guardar los mensajes de los errores
 
 $errores = [];
@@ -17,7 +18,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         //el parametro fileName es 'imagen' porque asi lo indicamos en
         //en el formulario (type='file' name='imagen')
         $imagen->saveUploadFile(imagenGaleria::RUTA_IMAGENES_GALLERY);
+        //si llega hasta aqui, no hay errores y se ha subido la imagen
         $imagen->copyFile(imagenGaleria::RUTA_IMAGENES_GALLERY,imagenGaleria::RUTA_IMAGENES_PORTFOLIO);
+        $connection= Connection::make();
+        $sql ="INSERT INTO imagenes (nombre,descripcion) VALUES (:nombre,:descripcion)";
+        $pdoStatement=$connection->prepare($sql);
+        $parametersStatementArray=['nombre'=>$imagen->getFileName(),':descripcion'=>$descripcion];
+            //Lanzamos la sentecia y vemos si se ha ejecutado correctamente
+        $response =$pdoStatement->execute($parametersStatementArray);
+        if($response===false){
+            $errores[]='No se ha podido guardar la imagen en la base de datos.';
+        }else{
+            $descripcion='';
+            $mensaje='Imagen guardada';
+        }
+        
+       
         $mensaje = 'Datos enviados';
     } catch (FileException $exception) {
         $errores[] = $exception->getMessage();
