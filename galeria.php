@@ -32,9 +32,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $descripcion='';
             $mensaje='Imagen guardada';
         }
+        $querySql='Select * from imagenes';
+        $queryStatement=$connection->query($querySql);
+        while($row=$queryStatement->fetch()){
+            echo 'id: '.$row['id'];
+            
+            // tiene el siguiente formato $row =['id'=>1,'nombre'=>'asd,'descripcion=>'dsf',
+            //numVisualizacion=0,numLikes=>0,Descargas=>0]
+
+        }
+        // ya no hace falta $mensaje = 'Datos enviados';
         
-       
-        $mensaje = 'Datos enviados';
     } catch (FileException $exception) {
         $errores[] = $exception->getMessage();
         //guardo en un array los errores
