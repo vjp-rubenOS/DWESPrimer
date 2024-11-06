@@ -5,13 +5,16 @@ require_once 'entities/imagenGaleria.class.php';
 require_once 'exceptions/FileException.class.php';
 require_once 'entities/connection.class.php';
 require_once 'entities/QueryBuilder.class.php';
+require_once 'exceptions/appException.class.php';
 //array para guardar los mensajes de los errores
 
 $errores = [];
 $descripcion = '';
 $mensaje = '';
 try {
-    $connection = Connection::make();
+    $config=require_once'app/config.php';
+    App::bind('config',$config);
+    $connection = App::getConnection();
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -47,6 +50,9 @@ try {
     //guardo en un array los errores
 }catch (QueryException $exception) {
     $errores[] = $exception->getMessage();
+}catch(AppException $exception){
+    $errores[] = $exception->getMessage();
+
 }
 
 

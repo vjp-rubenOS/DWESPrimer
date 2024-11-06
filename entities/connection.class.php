@@ -1,15 +1,19 @@
 <?php
+require_once 'entities/app.class.php';
+require_once 'exceptions/appException.class.php';
     class Connection{
         public static function make(){
-            $option=[
-                PDO::MYSQL_ATTR_INIT_COMMAND=>'SET NAMES utf8',
-                PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION,
-                PDO::ATTR_PERSISTENT=>true
-            ];
+            
             try{
-                $connection= new PDO('mysql:host=dwes.local;dbname=proyecto;charset=utf8','user','user',$option);
+                $config=App::get('config')['database'];
+                $connection= new PDO(
+                    $config['connection'].';dbname='.$config['name'],
+                    $config['username'],
+                    $config['password'],
+                    $config['options']
+                    );
             }catch(PDOException $error){
-                die($error->getMessage());
+                throw new AppException(getErrorString(ERROR_CON_DB));
             }
             return $connection; 
         }
