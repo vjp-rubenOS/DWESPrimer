@@ -4,13 +4,19 @@ require_once 'entities/file.class.php';
 require_once 'entities/imagenGaleria.class.php';
 require_once 'exceptions/FileException.class.php';
 require_once 'entities/connection.class.php';
+require_once 'entities/QueryBuilder.class.php';
 //array para guardar los mensajes de los errores
 
 $errores = [];
 $descripcion = '';
 $mensaje = '';
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    try {
+try {
+    $connection = Connection::make();
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+
+
         $descripcion = trim(htmlspecialchars($_POST['descripcion']));
         $tiposAceptados = ['image/jpeg', 'image/jpg', 'image/gif', 'image/png'];
         //tipologia MIME 'tipodearchivo/extension'
@@ -19,37 +25,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         //en el formulario (type='file' name='imagen')
         $imagen->saveUploadFile(imagenGaleria::RUTA_IMAGENES_GALLERY);
         //si llega hasta aqui, no hay errores y se ha subido la imagen
-        $imagen->copyFile(imagenGaleria::RUTA_IMAGENES_GALLERY,imagenGaleria::RUTA_IMAGENES_PORTFOLIO);
-        $connection= Connection::make();
-        $sql ="INSERT INTO imagenes (nombre,descripcion) VALUES (:nombre,:descripcion)";
-        $pdoStatement=$connection->prepare($sql);
-        $parametersStatementArray=['nombre'=>$imagen->getFileName(),':descripcion'=>$descripcion];
-            //Lanzamos la sentecia y vemos si se ha ejecutado correctamente
-        $response =$pdoStatement->execute($parametersStatementArray);
-        if($response===false){
-            $errores[]='No se ha podido guardar la imagen en la base de datos.';
-        }else{
-            $descripcion='';
-            $mensaje='Imagen guardada';
-        }
-        $querySql='Select * from imagenes';
-        $queryStatement=$connection->query($querySql);
-        while($row=$queryStatement->fetch()){
-            echo 'id: '.$row['id'];
-            
-            // tiene el siguiente formato $row =['id'=>1,'nombre'=>'asd,'descripcion=>'dsf',
-            //numVisualizacion=0,numLikes=>0,Descargas=>0]
+        $imagen->copyFile(imagenGaleria::RUTA_IMAGENES_GALLERY, imagenGaleria::RUTA_IMAGENES_PORTFOLIO);
 
+
+        $sql = "INSERT INTO imagenes (nombre,descripcion) VALUES (:nombre,:descripcion)";
+        $pdoStatement = $connection->prepare($sql);
+        $parametersStatementArray = ['nombre' => $imagen->getFileName(), ':descripcion' => $descripcion];
+        //Lanzamos la sentecia y vemos si se ha ejecutado correctamente
+        $response = $pdoStatement->execute($parametersStatementArray);
+        if ($response === false) {
+            $errores[] = 'No se ha podido guardar la imagen en la base de datos.';
+        } else {
+            $descripcion = '';
+            $mensaje = 'Imagen guardada';
         }
-        // ya no hace falta $mensaje = 'Datos enviados';
-        
-    } catch (FileException $exception) {
-        $errores[] = $exception->getMessage();
-        //guardo en un array los errores
     }
+    $queryBuilder = new QueryBuilder($connection);
+    $imagenes = $queryBuilder->findAll('imagenes', 'imagenGaleria');
+} catch (FileException $exception) {
+    $errores[] = $exception->getMessage();
+    //guardo en un array los errores
+}catch (QueryException $exception) {
+    $errores[] = $exception->getMessage();
 }
 
 
 
+
 require 'views/gallery.view.php';
-?>

@@ -23,7 +23,7 @@ class QueryBuilder{
             throw new QueryException(getErrorString(ERROR_EXECUTE_STATEMENT));
 
         }
-        return $pdoStatement->fetchAll(PDO::FETCH_CLASS,$classEntity|PDO::FETCH_PROPS_LATE,$classEntity);
+        return $pdoStatement->fetchAll(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE,$classEntity);
         
 
 
