@@ -1,4 +1,5 @@
 <?php
+require_once 'entities/datebase/IEntity.class.php';
 
     Class imagenGaleria {
 
@@ -92,6 +93,16 @@
                 $this->id = $id;
 
                 return $this;
+        }
+        public function toArray(){
+            return [
+                'id'=>$this->getId(),
+                'nombre'=>$this->getNombre(),
+                'descripcion'=>$this->getDescripcion(),
+                'numVisualizaciones'=>$this->getNumVisualizaciones(),
+                'numDownloads'=>$this->getNumDownloads()
+
+            ];
         }
     }
 

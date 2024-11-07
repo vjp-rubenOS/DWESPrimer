@@ -13,7 +13,9 @@ $descripcion = '';
 $mensaje = '';
 try {
     $config=require_once'app/config.php';
+
     App::bind('config',$config);
+
     $connection = App::getConnection();
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -43,8 +45,8 @@ try {
             $mensaje = 'Imagen guardada';
         }
     }
-    $queryBuilder = new QueryBuilder($connection);
-    $imagenes = $queryBuilder->findAll('imagenes', 'imagenGaleria');
+    $queryBuilder = new QueryBuilder('imagenes','imagenGaleria');
+    $imagenes = $queryBuilder->findAll();
 } catch (FileException $exception) {
     $errores[] = $exception->getMessage();
     //guardo en un array los errores
@@ -52,6 +54,10 @@ try {
     $errores[] = $exception->getMessage();
 }catch(AppException $exception){
     $errores[] = $exception->getMessage();
+
+}finally{
+    $queryBuilder = new QueryBuilder('imagenes','imagenGaleria');
+    $imagenes = $queryBuilder->findAll();
 
 }
 

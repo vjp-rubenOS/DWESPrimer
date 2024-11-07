@@ -13,6 +13,7 @@ require_once 'exceptions/appException.class.php';
                     $config['options']
                     );
             }catch(PDOException $error){
+                //die($error->getMessage());
                 throw new AppException(getErrorString(ERROR_CON_DB));
             }
             return $connection; 
