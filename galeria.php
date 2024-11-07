@@ -6,6 +6,7 @@ require_once 'exceptions/FileException.class.php';
 require_once 'entities/connection.class.php';
 require_once 'entities/QueryBuilder.class.php';
 require_once 'exceptions/appException.class.php';
+require_once 'entities/repository/imagenGaleriaRepository.php';
 //array para guardar los mensajes de los errores
 
 $errores = [];
@@ -16,7 +17,8 @@ try {
 
     App::bind('config',$config);
 
-    $connection = App::getConnection();
+    
+    $imagenRepositorio= new ImagenGaleriaRepositorio();
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -33,11 +35,18 @@ try {
         $imagen->copyFile(imagenGaleria::RUTA_IMAGENES_GALLERY, imagenGaleria::RUTA_IMAGENES_PORTFOLIO);
 
 
-        $sql = "INSERT INTO imagenes (nombre,descripcion) VALUES (:nombre,:descripcion)";
-        $pdoStatement = $connection->prepare($sql);
-        $parametersStatementArray = ['nombre' => $imagen->getFileName(), ':descripcion' => $descripcion];
-        //Lanzamos la sentecia y vemos si se ha ejecutado correctamente
-        $response = $pdoStatement->execute($parametersStatementArray);
+
+        // $sql = "INSERT INTO imagenes (nombre,descripcion) VALUES (:nombre,:descripcion)";
+        // $pdoStatement = $connection->prepare($sql);
+        // $parametersStatementArray = ['nombre' => $imagen->getFileName(), ':descripcion' => $descripcion];
+        // //Lanzamos la sentecia y vemos si se ha ejecutado correctamente
+        // $response = $pdoStatement->execute($parametersStatementArray);
+
+
+        $imagenGaleria= new imagenGaleria($imagen->getFileName(),$descripcion);
+        $imagenRepositorio->save($imagenGaleria);
+
+
         if ($response === false) {
             $errores[] = 'No se ha podido guardar la imagen en la base de datos.';
         } else {
@@ -45,8 +54,8 @@ try {
             $mensaje = 'Imagen guardada';
         }
     }
-    $queryBuilder = new QueryBuilder('imagenes','imagenGaleria');
-    $imagenes = $queryBuilder->findAll();
+    $imagenRepositorio = new QueryBuilder('imagenes','imagenGaleria');
+    $imagenes = $imagenRepositorio->findAll();
 } catch (FileException $exception) {
     $errores[] = $exception->getMessage();
     //guardo en un array los errores
@@ -55,9 +64,13 @@ try {
 }catch(AppException $exception){
     $errores[] = $exception->getMessage();
 
-}finally{
-    $queryBuilder = new QueryBuilder('imagenes','imagenGaleria');
-    $imagenes = $queryBuilder->findAll();
+}catch(PDOException $exception){
+    $errores[] = $exception->getMessage();
+
+}
+finally{
+    
+    $imagenes = $imagenRepositorio->findAll();
 
 }
 
