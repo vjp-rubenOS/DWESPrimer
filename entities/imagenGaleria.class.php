@@ -1,7 +1,7 @@
 <?php
 require_once 'entities/datebase/IEntity.class.php';
 
-    Class imagenGaleria {
+    Class imagenGaleria implements IEntity{
 
         const RUTA_IMAGENES_PORTFOLIO= 'images/index/portfolio/';
         const RUTA_IMAGENES_GALLERY = 'images/index/gallery/';
@@ -94,7 +94,7 @@ require_once 'entities/datebase/IEntity.class.php';
 
                 return $this;
         }
-        public function toArray(){
+        public function toArray():array{
             return [
                 'id'=>$this->getId(),
                 'nombre'=>$this->getNombre(),
