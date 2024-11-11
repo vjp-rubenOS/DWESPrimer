@@ -47,14 +47,14 @@ try {
         $imagenRepositorio->save($imagenGaleria);
 
 
-        if ($response === false) {
-            $errores[] = 'No se ha podido guardar la imagen en la base de datos.';
-        } else {
-            $descripcion = '';
-            $mensaje = 'Imagen guardada';
-        }
+        //if ($response === false) {
+        //    $errores[] = 'No se ha podido guardar la imagen en la base de datos.';
+        //} else {
+        //    $descripcion = '';
+        //    $mensaje = 'Imagen guardada';
+        //}
     }
-    $imagenRepositorio = new QueryBuilder('imagenes','imagenGaleria');
+    //$imagenRepositorio = new QueryBuilder('imagenes','imagenGaleria');
     $imagenes = $imagenRepositorio->findAll();
 } catch (FileException $exception) {
     $errores[] = $exception->getMessage();
@@ -70,7 +70,10 @@ try {
 }
 finally{
     
-    $imagenes = $imagenRepositorio->findAll();
+        $imagenes = $imagenRepositorio->findAll();
+
+    
+    
 
 }
 
