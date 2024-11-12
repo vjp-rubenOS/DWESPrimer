@@ -7,6 +7,7 @@ require_once 'entities/connection.class.php';
 require_once 'entities/QueryBuilder.class.php';
 require_once 'exceptions/appException.class.php';
 require_once 'entities/repository/imagenGaleriaRepository.php';
+require_once 'entities/repository/categoriaRepository.class.php';
 //array para guardar los mensajes de los errores
 
 $errores = [];
@@ -19,11 +20,12 @@ try {
 
     
     $imagenRepositorio= new ImagenGaleriaRepositorio();
+    $categoriaRepositorio= new CategoriaRepositorio();
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
-
+        $categoria=trim(htmlspecialchars($_POST['categoria']));
         $descripcion = trim(htmlspecialchars($_POST['descripcion']));
         $tiposAceptados = ['image/jpeg', 'image/jpg', 'image/gif', 'image/png'];
         //tipologia MIME 'tipodearchivo/extension'
@@ -43,7 +45,7 @@ try {
         // $response = $pdoStatement->execute($parametersStatementArray);
 
 
-        $imagenGaleria= new imagenGaleria($imagen->getFileName(),$descripcion);
+        $imagenGaleria= new imagenGaleria($imagen->getFileName(),$descripcion,$categoria);
         $imagenRepositorio->save($imagenGaleria);
 
 
@@ -71,6 +73,7 @@ try {
 finally{
     
         $imagenes = $imagenRepositorio->findAll();
+        $categorias = $categoriaRepositorio->findAll();
 
     
     

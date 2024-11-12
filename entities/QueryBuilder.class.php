@@ -49,7 +49,8 @@ abstract class  QueryBuilder{
         $statement =$this->connection->prepare($sql);
         $statement->execute($parameters);
     }catch(PDOException $exception){
-        throw new  QueryException(getErrorString($exception));
+        die ($exception->getMessage());
+        //throw new  QueryException(getErrorString($exception));
 
     }
     

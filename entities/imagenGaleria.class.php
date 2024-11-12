@@ -13,8 +13,9 @@ require_once 'entities/datebase/IEntity.class.php';
         private $numDownloads;
         
         private $id;
+        private $categoria;
 
-        public function __construct(string $nombre='', string $descripcion='', int $numVisualizaciones=0, int $numLikes=0, int $numDownloads=0)
+        public function __construct(string $nombre='', string $descripcion='',int $categoria=0, int $numVisualizaciones=0, int $numLikes=0, int $numDownloads=0)
         {
             $this->nombre = $nombre;
             $this->descripcion = $descripcion;
@@ -22,6 +23,7 @@ require_once 'entities/datebase/IEntity.class.php';
             $this->numLikes = $numLikes;
             $this->numDownloads = $numDownloads;
             $this->id=null;
+            $this->categoria=$categoria;
         }
 
         public function getNombre() : string{
@@ -100,9 +102,30 @@ require_once 'entities/datebase/IEntity.class.php';
                 'nombre'=>$this->getNombre(),
                 'descripcion'=>$this->getDescripcion(),
                 'numVisualizaciones'=>$this->getNumVisualizaciones(),
-                'numDownloads'=>$this->getNumDownloads()
+                'numDownloads'=>$this->getNumDownloads(),
+                'categoria' =>$this->getCategoria()
 
             ];
+        }
+
+        /**
+         * Get the value of categoria
+         */ 
+        public function getCategoria()
+        {
+                return $this->categoria;
+        }
+
+        /**
+         * Set the value of categoria
+         *
+         * @return  self
+         */ 
+        public function setCategoria($categoria)
+        {
+                $this->categoria = $categoria;
+
+                return $this;
         }
     }
 
