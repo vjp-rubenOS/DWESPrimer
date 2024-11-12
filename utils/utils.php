@@ -26,3 +26,20 @@ function existeOpcionMenuActivaEnArray(array $opcionesMenu): bool
     // Si ninguna de las opciones del array esta activa, retorna false.
     return false;
 }
+
+
+
+
+
+/**
+ * Con shufle coloco de forma aleatoria los integrantes del array y con array_slice se coge los 3 primeros
+ * @param [array] $arrayPartners
+ * @return void
+ */
+function obtenerTresPartners($arrayPartners)
+{
+    shuffle($arrayPartners);
+
+    return array_slice($arrayPartners, 0, 3);
+}
+?>

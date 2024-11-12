@@ -1,9 +1,20 @@
-<?php 
-class Partness{
+<?php
+class Partners
+{
+    //Atrubutos
     private $nombre;
     private $logo;
     private $descripcion;
+    
+    //Constructor
 
+    public function __construct($nombre,  $logo,  $descripcion)
+    {
+        $this->nombre = $nombre;
+        $this->logo = $logo;
+        $this->descripcion = $descripcion;
+    }
+    
 
     /**
      * Get the value of descripcion
@@ -65,6 +76,3 @@ class Partness{
         return $this;
     }
 }
-
-?>
-
