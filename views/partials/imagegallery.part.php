@@ -32,7 +32,7 @@
                         <div class="row box-content">
                             <ul class="list-inline text-center">
                                 <li><i class="fa fa-eye"></i><?= $imagen->getNumVisualizaciones() ?></li>
-                                <li><i class="fa fa-heart"></i><?= $imagen->getNumLikes() ?></li>
+                                <li><i class="fa fa-heart"></i><?= $imagen->getNumLike() ?></li>
                                 <li><i class="fa fa-download"></i><?= $imagen->getNumDownloads() ?></li>
                             </ul>
                         </div>
