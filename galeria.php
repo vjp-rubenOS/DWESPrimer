@@ -34,7 +34,7 @@ try {
         //en el formulario (type='file' name='imagen')
         $imagen->saveUploadFile(imagenGaleria::RUTA_IMAGENES_GALLERY);
         //si llega hasta aqui, no hay errores y se ha subido la imagen
-        $imagen->copyFile(imagenGaleria::RUTA_IMAGENES_GALLERY, imagenGaleria::RUTA_IMAGENES_PORTFOLIO);
+        $imagen->copyFile(imagenGaleria::RUTA_IMAGENES_GALLERY, imagenGaleria::RUTA_IMAGENES_PORTAFOLIO );
 
 
 

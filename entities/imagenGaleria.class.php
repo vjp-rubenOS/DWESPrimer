@@ -51,7 +51,7 @@ class ImagenGaleria implements IEntity
             'nombre' => $this->getNombre(),
             'descripcion' => $this->getDescripcion(),
             'numVisualizaciones' => $this->getNumVisualizaciones(),
-            'numLikes' => $this->getNumLikes(),
+            'numLikes' => $this->getNumLike(),
             'numDescargas' => $this->getNumDownloads(),
             'categoria' => $this->getCategoria()
         ];
@@ -120,7 +120,7 @@ class ImagenGaleria implements IEntity
     /**
      * Get the value of numLikes
      */ 
-    public function getNumLikes()
+    public function getNumLike()
     {
         return $this->numLikes;
     }
