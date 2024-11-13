@@ -22,28 +22,15 @@
     </div>
   </div>
 
-  <?php
-   // Definir las categorías con su ID y estado de activación
-   $categories = [
-     ['id' => 'category1', 'name' => 'Category I', 'isActive' => true],
-     ['id' => 'category2', 'name' => 'Category II', 'isActive' => false],
-     ['id' => 'category3', 'name' => 'Category III', 'isActive' => false]
-   ];
-   ?>
-
   <div id="index-body">
     <!-- Pictures Navigation table -->
     <div class="table-responsive">
       <table class="table text-center">
         <thead>
           <tr>
-            <?php foreach ($categories as $category): ?>
-              <td>
-                <a class="link <?= $category['isActive'] ? 'active' : '' ?>" href="#<?= $category['id'] ?>" data-toggle="tab">
-                  <?= $category['name'] ?>
-                </a>
-              </td>
-            <?php endforeach; ?>
+            <td><a class="link active" href="#category1" data-toggle="tab">category I</a></td>
+            <td><a class="link" href="#category2" data-toggle="tab">category II</a></td>
+            <td><a class="link" href="#category3" data-toggle="tab">category III</a></td>
           </tr>
         </thead>
       </table>
@@ -52,16 +39,46 @@
 
     <!-- Navigation Table Content -->
     <div class="tab-content">
-      <?php foreach ($categories as $category): ?>
-        <div id="<?= $category['id'] ?>" class="tab-pane <?= $category['isActive'] ? 'active' : '' ?>">
-          <?php include  'partials/imagegallery.part.php' ?>
-        </div>
-      <?php endforeach; ?>
+
+      <!-- First Category pictures -->
+
+      <?php
+      $idCategory = 'category1';
+      $estaActiva = 'active';
+      shuffle($imagenes);
+
+      include __DIR__ . '/partials/imagegallery.part.php'
+      ?>
+
+      <!-- End of First category pictures -->
+
+      <!--second category pictures -->
+
+      <?php
+      $idCategory = 'category2';
+      $estaActiva = '';
+      shuffle($imagenes);
+
+      include __DIR__ . '/partials/imagegallery.part.php'
+      ?>
+
+      <!-- End of second category pictures -->
+
+      <!-- Third Category Pictures -->
+
+      <?php
+      $idCategory = 'category3';
+      $estaActiva = '';
+      shuffle($imagenes);
+
+      include __DIR__ . '/partials/imagegallery.part.php'
+      ?>
+
+      <!-- Third Category Pictures -->
+
     </div>
     <!-- End of Navigation Table Content -->
-    
   </div><!-- End of Index-body box -->
-
 
   <!-- Newsletter form -->
   <div class="index-form text-center">
@@ -78,14 +95,12 @@
   </div>
   <!-- End of Newsletter form -->
 
- <!-- Box within partners name and logo -->
- 
-          <?php
-          
-          include_once "partials/partners.part.php";
-          
-          ?>
-     
+  <!-- Box within partners name and logo -->
+  <?php
+
+  include_once "partials/partners.part.php";
+
+  ?>
   <!-- End of Box within partners name and logo -->
 
 </div><!-- End of index box -->
