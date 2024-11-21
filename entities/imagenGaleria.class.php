@@ -52,7 +52,7 @@ class ImagenGaleria implements IEntity
             'descripcion' => $this->getDescripcion(),
             'numVisualizaciones' => $this->getNumVisualizaciones(),
             'numLikes' => $this->getNumLike(),
-            'numDescargas' => $this->getNumDownloads(),
+            'numDownloads' => $this->getNumDownloads(),
             'categoria' => $this->getCategoria()
         ];
     }
