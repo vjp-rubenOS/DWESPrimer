@@ -15,9 +15,12 @@ $descripcion = '';
 $mensaje = '';
 try {
     $config=require_once'app/config.php';
+    //Guardamos la configuracion en el contenedor de servicios
 
     App::bind('config',$config);
-
+    //Yano necesitamos llamar al metodo make
+    //$connection=Connectio::make($config['database]);
+    //Ahora ya obtenemos la conexion llamando al metodo getConection
     
     $imagenRepositorio= new ImagenGaleriaRepositorio();
     $categoriaRepositorio= new CategoriaRepositorio();
@@ -57,7 +60,7 @@ try {
         //}
     }
     //$imagenRepositorio = new QueryBuilder('imagenes','imagenGaleria');
-    $imagenes = $imagenRepositorio->findAll();
+    //$imagenes = $imagenRepositorio->findAll();
 } catch (FileException $exception) {
     $errores[] = $exception->getMessage();
     //guardo en un array los errores

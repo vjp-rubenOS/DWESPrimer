@@ -36,9 +36,11 @@ abstract class  QueryBuilder{
 
 
     }
+    
     public function save(IEntity $entity): void{
         try{
         $parameters =$entity->toArray();
+        // Hace un insert into imagenes (descripcion, categoria) values (lo que ocupa)
 
         $sql = sprintf('insert into %s (%s) values(%s)',
         $this->table,

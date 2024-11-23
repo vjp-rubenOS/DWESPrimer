@@ -3,6 +3,8 @@ require_once 'entities/app.class.php';
 require_once 'exceptions/appException.class.php';
     class Connection{
         public static function make(){
+
+            // aqui habia codigo antes  para que utilizara utf8, cuando se produzca un error, para que no cierre la conexion y mejorar el rendimiento
             
             try{
                 $config=App::get('config')['database'];
