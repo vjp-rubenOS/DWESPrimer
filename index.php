@@ -1,8 +1,10 @@
 <?php
 
-require "utils/utils.php";
-require "entities/imagenGaleria.class.php";
-require "entities/Partner.class.php";
+require_once "utils/utils.php";
+require_once "entities/imagenGaleria.class.php";
+require_once "entities/Partner.class.php";
+require_once "entities/connection.class.php";
+require_once "entities/repository/imagenGaleriaRepository.php";
 
 
 
@@ -10,8 +12,37 @@ require "entities/Partner.class.php";
 $imagenes = [];
 
 
-for ($i = 1; $i <= 12; $i++) {
-    $imagenes[] = new ImagenGaleria(($i) . ".jpg", "Descripción imagen " . ($i),0, rand(0, 1000), rand(0, 1000), rand(0, 1000));
+// for ($i = 1; $i <= 12; $i++) {
+//     $imagenes[] = new ImagenGaleria(($i) . ".jpg", "Descripción imagen " . ($i),0, rand(0, 1000), rand(0, 1000), rand(0, 1000));
+// }
+
+try{
+  $config=require_once'app/config.php';
+
+  App::bind('config',$config);
+
+  $imagenRepositorio= new ImagenGaleriaRepositorio();
+}
+catch (FileException $exception) {
+  $errores[] = $exception->getMessage();
+  //guardo en un array los errores
+}catch (QueryException $exception) {
+  $errores[] = $exception->getMessage();
+}catch(AppException $exception){
+  $errores[] = $exception->getMessage();
+
+}catch(PDOException $exception){
+  $errores[] = $exception->getMessage();
+
+}
+finally{
+  
+      $imagenes = $imagenRepositorio->findAll();
+     
+
+  
+  
+
 }
 
 
