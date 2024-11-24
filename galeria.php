@@ -50,13 +50,14 @@ try {
 
         $imagenGaleria= new imagenGaleria($imagen->getFileName(),$descripcion,$categoria);
         $imagenRepositorio->save($imagenGaleria);
+        $descripcion = '';
+        $mensaje = 'Imagen guardada';
 
 
         //if ($response === false) {
         //    $errores[] = 'No se ha podido guardar la imagen en la base de datos.';
         //} else {
-        //    $descripcion = '';
-        //    $mensaje = 'Imagen guardada';
+       
         //}
     }
     //$imagenRepositorio = new QueryBuilder('imagenes','imagenGaleria');

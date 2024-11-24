@@ -5,6 +5,7 @@ require_once "entities/imagenGaleria.class.php";
 require_once "entities/Partner.class.php";
 require_once "entities/connection.class.php";
 require_once "entities/repository/imagenGaleriaRepository.php";
+require_once "entities/repository/asociadoRepository.class.php";
 
 
 
@@ -22,6 +23,7 @@ try{
   App::bind('config',$config);
 
   $imagenRepositorio= new ImagenGaleriaRepositorio();
+  $asociadoRepositorio= new AsociadoRepositorio();
 }
 catch (FileException $exception) {
   $errores[] = $exception->getMessage();
@@ -38,6 +40,7 @@ catch (FileException $exception) {
 finally{
   
       $imagenes = $imagenRepositorio->findAll();
+      $arrayPartners=$asociadoRepositorio->findAll();
      
 
   
@@ -47,15 +50,15 @@ finally{
 
 
 
-$contador = 1;
-for ($i = 1; $i < 7; $i++) {
-  $arrayPartners[] = new Partners('Asociado ' . $i, "images/index/log" . $contador   . ".jpg", " Descripcion" . $i);
-  if ($contador  >= 3) {
-    $ncontador   = 1;
-  } else {
-    $contador++;
-  }
-}
+//$contador = 1;
+//for ($i = 1; $i < 7; $i++) {
+//  $arrayPartners[] = new Partner('Asociado ' . $i, "images/index/log" . $contador   . ".jpg", " Descripcion" . $i);
+//  if ($contador  >= 3) {
+//    $ncontador   = 1;
+//  } else {
+//    $contador++;
+//  }
+//}
 
 
 

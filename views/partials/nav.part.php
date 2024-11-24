@@ -39,8 +39,8 @@
             <i class="fa fa-image sr-icons"></i> Gallery
           </a>
           <!-- este lo hemos añadido despues-->
-          <li class="<?php echo esOpcionMenuActiva("/asociados.php") ? "active" : "" ?>lien">
-          <a href="<?php echo esOpcionMenuActiva("/asociados.php") ? "#" : "asociados.php" ?>">
+          <li class="<?php echo esOpcionMenuActiva("/partners.php") ? "active" : "" ?>lien">
+          <a href="<?php echo esOpcionMenuActiva("/partners.php") ? "#" : "partners.php" ?>">
             <i class="fa fa-hand-o-right sr-icons"></i> Partners
           </a>
         </li>
