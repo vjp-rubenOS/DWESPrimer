@@ -1,56 +1,74 @@
 <?php
+require_once 'entities/connection.class.php';
+require_once 'entities/mensaje.class.php';
+require_once 'entities/repository/mensajeRepository.class.php';
+require_once 'exceptions/appException.class.php';
+require_once 'exceptions/Fileexception.class.php';
+require_once 'exceptions/queryException.class.php';
 
 $errores = [];
-$nombre = '';
-$apellido = '';
-$email = '';
-$subject = '';
-$texto = '';
+$nombre='';
+$apellido='';
+$email='';
+$subject='';
+$texto='';
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Guardamos los datos del formulario con trim para quitar espacios al principio y final
-    $nombre = isset($_POST['nombre']) ? htmlspecialchars(trim($_POST['nombre'])) : '';
-    $apellido = isset($_POST['apellido']) ? htmlspecialchars(trim($_POST['apellido'])) : '';
-    $email = isset($_POST['email']) ? htmlspecialchars(trim($_POST['email'])) : '';
-    $subject = isset($_POST['subject']) ? htmlspecialchars(trim($_POST['subject'])) : '';
-    $texto = isset($_POST['texto']) ? htmlspecialchars(trim($_POST['texto'])) : '';
+try {
+    $config = require_once 'app/config.php';
+    App::bind('config', $config);
 
-    // Validamos los campos obligatorios
-    if (empty($nombre)) {
-        $errores[] = "El campo First Name no puede estar vacío.";
-    }
-    if (empty($email)) {
-        $errores[] = "El campo Email no puede estar vacío.";
-    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $errores[] = "Formato de email incorrecto.";
-    }
-    if (empty($subject)) {
-        $errores[] = "El campo Subject no puede estar vacío.";
-    }
-}
+    $mensajeRepository = new MensajeRepositorio();
 
-// Función para mostrar el mensaje de error o éxito directamente
-function mostrarMensaje($errores, $nombre, $apellido, $email, $subject, $texto)
-{
-    if (!empty($errores)) {
-        // Si hay errores, mostramos la lista de errores
-        echo "<div class='alert alert-danger'><ul>";
-        foreach ($errores as $error) {
-            echo "<li>$error</li>";
+    if ($_SERVER["REQUEST_METHOD"] == 'POST') {
+        $mostrarErrores = [];
+        $mostrarDatos= [];
+        $nombre = $_POST["nombre"];
+        $apellido = $_POST["apellido"];
+        $email = $_POST["email"];
+        $subject = $_POST["subject"];
+        $texto = $_POST["texto"];
+
+        if (empty($nombre)) {
+            $mostrarErrores[] = "El campo First Name no puede estar vacío";
         }
-        echo "</ul></div>";
-    } elseif ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        // Si no hay errores, mostramos la información enviada
-        echo "<div class='alert alert-info'>";
-        echo "First Name: " . htmlspecialchars($nombre) . "<br>";
-        echo "Last Name: " . htmlspecialchars($apellido) . "<br>";
-        echo "Email: " . htmlspecialchars($email) . "<br>";
-        echo "Subject: " . htmlspecialchars($subject) . "<br>";
-        echo "Message: " . htmlspecialchars($texto) . "<br>";
-        echo "</div>";
+        if (empty($email)) {
+            $mostrarErrores[] = "El campo Email no puede estar vacío";
+        }
+        if (empty($subject)) {
+            $mostrarErrores[] = "El campo subject no puede estar vacío";
+        }
+
+        if (empty($mostrarErrores)) {
+            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                $mostrarErrores[] = "Email incorrecto";
+            } else {
+                $mostrarDatos[] = "First Name: $nombre";
+
+                if (!empty($apellido)) {
+                    $mostrarDatos[] = "Second name: $apellido";
+                }
+
+                $mostrarDatos[] = "Email: $email";
+                $mostrarDatos[] = "Subject: $subject";
+
+                if (!empty($texto)) {
+                    $mostrarDatos[] = "Message: $texto";
+                }
+                $mensaje = new Mensaje($nombre, $apellido, $email, $subject, $texto);
+                $mensajeRepository->save($mensaje);
+            }
+        }
+
+        
     }
+} catch (QueryException $exception) {
+    $errores[] = $exception->getMessage();
+} catch (AppException $exception) {
+    $errores[] = $exception->getMessage();
+} catch (PDOException $exception) {
+    $errores[] = $exception->getMessage();
 }
+
 require 'utils/utils.php'; // utils antes que view
 require 'views/contact.view.php';
-
 ?>
