@@ -9,22 +9,29 @@ require_once "entities/repository/asociadoRepository.class.php";
 
 
 
-
+// array vacio donde almacenamos los objetos de tipo ImpagenGaleria 
 $imagenes = [];
 
 
+
+//Codigo antiguo donde creaba 12 objetos de imagenGaleria 
 // for ($i = 1; $i <= 12; $i++) {
 //     $imagenes[] = new ImagenGaleria(($i) . ".jpg", "Descripción imagen " . ($i),0, rand(0, 1000), rand(0, 1000), rand(0, 1000));
 // }
 
 try{
-  $config=require_once'app/config.php';
 
+  //Pasos para hacer la conexion a la base de datos
+  //Se guarda en una variable la configuracion desde un archivo de configuracion
+  $config=require_once'app/config.php';
+  //Se vincula la configuracion a la clase App
   App::bind('config',$config);
 
+  // Se instancian a las clases  repositorios para poder acceder a las tablas de imagenes y asociados
   $imagenRepositorio= new ImagenGaleriaRepositorio();
   $asociadoRepositorio= new AsociadoRepositorio();
 }
+//Captura de errores
 catch (FileException $exception) {
   $errores[] = $exception->getMessage();
   //guardo en un array los errores
@@ -38,11 +45,10 @@ catch (FileException $exception) {
 
 }
 finally{
-  
-      $imagenes = $imagenRepositorio->findAll();
-      $arrayPartners=$asociadoRepositorio->findAll();
-     
-
+    // Al Final, se recuperan los datos de las imágenes y los asociados, si no hubo errores
+    // Con el finally se ejecuta lo siguiente haya o no excepciones 
+    $imagenes = $imagenRepositorio->findAll();  // Recupera todas las imágenes de la galería desde la base de datos
+    $arrayPartners = $asociadoRepositorio->findAll();  // Recupera todos partners desde la base de datos
   
   
 

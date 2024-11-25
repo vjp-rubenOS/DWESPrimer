@@ -15,18 +15,21 @@ include __DIR__ .'/partials/nav.part.php';
 			<p>Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p>
 
 			<?php
+			// Comprueba si el array de errores esta vacio
 			if (!empty($mostrarErrores)) {
 				echo "<div class='alert alert-danger'>";
-				foreach ($mostrarErrores as $valor) {
-					echo "<li> $valor ";
+				// Recorre el array con los strings guardados
+				foreach ($mostrarErrores as $error) {
+					echo "<li> $error ";
 				}
 				echo "</div>";
 			}
-
+			//Comprueba si el array con los datos de los campos del formulario esta vacio
 			if(!empty($mostrarDatos)) {
 				echo "<div class='alert alert-info'>";
-				foreach ($mostrarDatos as $valor) {
-					echo "<li> $valor ";
+				//Recorre el array con los strings guardados 
+				foreach ($mostrarDatos as $dato) {
+					echo "<li> $dato ";
 				}
 				echo "</div>";
 			}
@@ -37,29 +40,35 @@ include __DIR__ .'/partials/nav.part.php';
 				<div class="form-group">
 					<div class="col-xs-6">
 						<label class="label-control">First Name</label>
-						<input class="form-control" type="text" name="nombre">
+						<input class="form-control" type="text" name="nombre" value="<?php echo isset($nombre) ? htmlspecialchars($nombre) : ''; ?>">
+						<!--Guardando en el value el valor ingresado previamente del nombre y  se muestra hasta que se envie-->
+						
 					</div>
 					<div class="col-xs-6">
 						<label class="label-control">Last Name</label>
-						<input class="form-control" type="text" name="apellido">
+						<input class="form-control" type="text" name="apellido" value="<?php echo isset($apellido) ? htmlspecialchars($apellido) : ''; ?>">
+						<!--Guardando en el value el valor ingresado previamente del apellido y  se muestra hasta que se envie-->
 					</div>
 				</div>
 				<div class="form-group">
 					<div class="col-xs-12">
 						<label class="label-control">Email</label>
-						<input class="form-control" type="text" name="email">
+						<input class="form-control" type="text" name="email"  value="<?php echo isset($email) ? htmlspecialchars($email) : ''; ?>">
+						<!--Guardando en el value el valor ingresado previamente del email y  se muestra hasta que se envie-->
 					</div>
 				</div>
 				<div class="form-group">
 					<div class="col-xs-12">
 						<label class="label-control">Subject</label>
-						<input class="form-control" type="text" name="subject">
+						<input class="form-control" type="text" name="subject" value="<?php echo isset($subject) ? htmlspecialchars($subject) : ''; ?>">
+						<!--Guardando en el value el valor ingresado previamente del subject y  se muestra hasta que se envie-->
 					</div>
 				</div>
 				<div class="form-group">
 					<div class="col-xs-12">
 						<label class="label-control">Message</label>
-						<textarea class="form-control" name="texto"></textarea>
+						<textarea class="form-control" name="texto"><?php echo isset($texto) ? htmlspecialchars($texto) : ''; ?></textarea>
+						<!--Guardando en el value el valor ingresado previamente del texto y  se muestra hasta que se envie-->
 						<button class="pull-right btn btn-lg sr-button">SEND</button>
 					</div>
 				</div>

@@ -43,9 +43,10 @@
       <!-- First Category pictures -->
 
       <?php
+      //Asignacion del id a la categoria 
       $idCategory = 'category1';
-      $estaActiva = 'active';
-      shuffle($imagenes);
+      $estaActiva = 'active';// Se marca activo por defecto
+      shuffle($imagenes);//Mezcla aleatoriamente las imagenes
 
       include __DIR__ . '/partials/imagegallery.part.php'
       ?>
@@ -55,8 +56,9 @@
       <!--second category pictures -->
 
       <?php
-      $idCategory = 'category2';
-      $estaActiva = '';
+      //Asignacion del id a la categoria 
+      $idCategory = 'category2';//Esta categoria no esta activa por defecto
+      $estaActiva = '';//Mezcla aleatoriamente las imagenes
       shuffle($imagenes);
 
       include __DIR__ . '/partials/imagegallery.part.php'
@@ -67,9 +69,10 @@
       <!-- Third Category Pictures -->
 
       <?php
+      //Asignacion del id a la categoria 
       $idCategory = 'category3';
-      $estaActiva = '';
-      shuffle($imagenes);
+      $estaActiva = '';//Esta categoria no esta activa por defecto
+      shuffle($imagenes);//Mezcla aleatoriamente las imagenes
 
       include __DIR__ . '/partials/imagegallery.part.php'
       ?>

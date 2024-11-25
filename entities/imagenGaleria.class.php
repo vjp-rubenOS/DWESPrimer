@@ -1,10 +1,12 @@
 <?php
 require_once 'entities/datebase/IEntity.class.php';
+//Creacion de la clase implementadon la interfaz IEntity
 class ImagenGaleria implements IEntity
 {
+    // Constantes con la ruta de las imagenes
     const RUTA_IMAGENES_PORTAFOLIO = "images/index/portfolio/";
     const RUTA_IMAGENES_GALLERY = "images/index/gallery/";
-
+    // Variables
     private $nombre;
 
     private $descripcion;
@@ -18,7 +20,15 @@ class ImagenGaleria implements IEntity
     private $id;
 
     private $categoria;
-
+    /**
+     * Constructor de la clase
+     * @param string $nombre
+     * @param string $descripcion
+     * @param integer $categoria
+     * @param integer $numVisualizaciones
+     * @param integer $numLikes
+     * @param integer $numDownloads
+     */
     public function __construct($nombre = '',  $descripcion = '', int $categoria = 0,  $numVisualizaciones = 0,  $numLikes = 0,  $numDownloads = 0)
     {
         $this->nombre = $nombre;
@@ -33,17 +43,28 @@ class ImagenGaleria implements IEntity
     
 
     
-
+    /**
+     * Funcion para generar la URL de las imagenes concatenando ruta y nombre
+     * @return string
+     */
     public function getUrlPortafolio(): string
     {
         return self::RUTA_IMAGENES_PORTAFOLIO . $this->getNombre();
     }
-
+    /**
+     * Funcion para generar la URL de las imagenes concatenando ruta y nombre
+     * @return string
+     */
     public function getUrlGallery(): string
     {
         return self::RUTA_IMAGENES_GALLERY . $this->getNombre();
     }
-
+    /**
+     * Funcion para convertir un objeto en un array asociativo
+     * La clave son los nombres de las propiedades y del objeto y los valores  son los datos de las propiedades
+     * 
+     * @return array
+     */
     public function toArray(): array
     {
         return [

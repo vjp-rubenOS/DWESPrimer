@@ -1,6 +1,8 @@
 <div id="<?= $idCategory ?>" class="tab-pane <?= $estaActiva ?>">
     <div class="row popup-gallery">
+        <!-- Recorremos el array de imagenes-->
         <?php foreach ($imagenes as $imagen): ?>
+             <!-- Por cada imagen en el array se crea un bloque de HTML -->
             <div class="col-xs-12 col-sm-6 col-md-3">
                 <div class="sol">
                     <img class="img-responsive" src="<?= $imagen->getUrlPortafolio() ?>" alt="<?= $imagen->getDescripcion() ?>">
