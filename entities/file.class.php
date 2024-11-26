@@ -59,6 +59,9 @@ class File{
        }
         
     }
+    /**
+     * Sirve para devolver el nombre del archivo
+     */
     public function getFileName(){
         return $this->fileName;
     }
@@ -74,21 +77,23 @@ class File{
         }
     
         // con pathinfo se puede separar el nombre de la extension
-        $nombreBase = pathinfo($this->file['name'], PATHINFO_FILENAME);// Este sirve para extraer el nombre
-        $extension = pathinfo($this->file['name'], PATHINFO_EXTENSION);// Este sirve para extraer la extension
+        // Con este cogemos el nombre
+        $nombreArchivo = pathinfo($this->file['name'], PATHINFO_FILENAME);
+        //Con este cogemos la extension
+        $extArchivo = pathinfo($this->file['name'], PATHINFO_EXTENSION);
         
      
-        $contador = 1; // contado con el numero que tendra la imagen si se repite 
+        $numero = 1; // numero que tendra la imagen si se repite 
         $ruta = $rutaDestino . $this->file['name'];//Ruta 
     
         // Si el archivo ya existe,pone un numero despues del nombre y antes de la extension
         while (file_exists($ruta)) {
-            $this->fileName = $nombreBase . "_$contador." . $extension;
+            $this->fileName = $nombreArchivo . "_$numero." . $extArchivo;
             $ruta = $rutaDestino . $this->fileName;
-            $contador++;
+            $numero++;
         }
-        // si no esta duplicado usa el nombre original
-        if ($contador === 1) {
+        // si el numero sigue siendo 1 al salir del bucle quiere decir que no hay duplicado y se coge el nombre original
+        if ($numero === 1) {
             $this->fileName = $this->file['name'];
         }
     
@@ -99,6 +104,8 @@ class File{
     }
     
     /**
+     * 
+     * Hace una copia del fichero a portafolio
      * @param string $rutaOrigen
      * @param string $rutaDestino
      * @throws FileException

@@ -12,8 +12,13 @@ class Partner implements IEntity
     private $descripcion;
     private $id;
 
-    //Constructor
-
+     /**
+     * Constructor de la clase Asociados
+     *
+     * @param string $nombre
+     * @param string $log
+     * @param string $descripcion
+     */
     public function __construct($nombre = ' ',  $logo = ' ',  $descripcion = ' ')
     {
         $this->nombre = $nombre;
@@ -21,6 +26,12 @@ class Partner implements IEntity
         $this->descripcion = $descripcion;
         $this->id = null;
     }
+    /**
+     * Función que convierte un Objeto en un array asociativo 
+     * las claves son nombres de las propiedades del objeto y los valores son los datos de esas propiedades.
+     *
+     * @return array
+     */
     public function toArray(): array
     {
         return [
