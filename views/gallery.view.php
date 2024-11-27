@@ -36,6 +36,7 @@
             </div>
                     <div class="form-group">
                         <div class="col-xs-12">
+                            <!---Añadido despues para elegir categoria para la imagen-->
                             <label class="label-control" >Categoria</label>
                             <select class="form-control" name="categoria" >
                                 <?php foreach($categorias as $categoria):?>

@@ -4,21 +4,39 @@ require_once 'utils/const.php';
 require_once 'entities/app.class.php';
 require_once 'entities/datebase/IEntity.class.php';
 abstract class  QueryBuilder{
+
+    //Variables
     /**
      * @var PDO
      */
     private $connection;
 
-    private $table;
-    private $classEntity;
     /**
-     * @param PDO $connection
+     * @var string
+     */
+    private $table;
+
+    /**
+     * @var string
+     */
+    private $classEntity;
+
+    /**
+     * Constructor de la clase
+     * @param string $table
+     * @param string $classEntity
      */
     public function __construct($table, $classEntity){
         $this->connection=App::getConnection();
         $this->table=$table;
         $this->classEntity=$classEntity;
     }
+    /**
+     * 
+     * Obtiene los registros de la tabla utilizando la sentendia de MySQL
+     * Conectandose a la base de datos utilizando la clse Connection
+     * @return array
+     */
     public function findAll(){
 
         $sqlStatement="Select * from $this->table";
@@ -36,7 +54,11 @@ abstract class  QueryBuilder{
 
 
     }
-    
+    /**
+     * Mete los datos en la base de datos utilizando la sentencia MySQL (campo) y (valor)
+     * Conectandose a la base de datos utilizando la clse Connection
+     *  @param IEntity $entity
+     */
     public function save(IEntity $entity): void{
         try{
         $parameters =$entity->toArray();
@@ -67,6 +89,9 @@ abstract class  QueryBuilder{
         
 
     }
+    /**
+     * @param int $categoria
+     */
     public function incrementarNumCategorias(int $categoria){
         try{
             $this->connection->beginTransaction();
@@ -82,6 +107,23 @@ abstract class  QueryBuilder{
         
 
 
+       
+    }
+    /**
+     * @param callable $fnExecuteQuerys
+     */
+    public function executeTransaction(callable $fnExecuteQuerys){
+        try{
+            $this->connection->beginTransaction();
+            $fnExecuteQuerys(); //llamo al callable para que ejecute todas
+                                //las operaciones que sean necesarias realizar
+
+            $this->connection->commit(); //Para confirmar las operaciones pendientes y ejecutar
+
+        }catch(PDOException $pdoException){
+            $this->connection->rollBack();
+            throw new QueryException('No se ha podido realizar la operacion');
+        }
     }
     
 

@@ -19,7 +19,7 @@ class ImagenGaleria implements IEntity
 
     private $id;
 
-    private $categoria;
+    private $categoria;// esta la hemos añadido despues
     /**
      * Constructor de la clase
      * @param string $nombre
