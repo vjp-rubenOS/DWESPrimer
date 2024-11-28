@@ -22,11 +22,18 @@ class File{
         $this->file=$_FILES[$fileName];
         $this->fileName='';
 
+
+
         //Comprobamos que es array contiene el fichero
         if(!isset($this->file)){
             //Mostrar un error
             throw new FileException(getErrorString(UPLOAD_ERR_NO_FILE));
         }
+
+
+
+
+
         // YA CON LA FUNCION DE ERRORES NO HARIA FALTA EL SWITCH CASE 
         //verificamos si ha habido algun error durante la subida del fichero
        //if($this->file['error'] !== UPLOAD_ERR_OK){
@@ -52,6 +59,9 @@ class File{
 
        // }
        //}
+
+
+
        if(in_array($this->file['type'],$arrType)===false){
         throw new FileException(getErrorString(UPLOAD_ERR_EXTENSION));
         //Error,tipo no soportado
@@ -59,12 +69,18 @@ class File{
        }
         
     }
+
+
+
     /**
      * Sirve para devolver el nombre del archivo
      */
     public function getFileName(){
         return $this->fileName;
     }
+
+
+
    /**
      * Guarda el archivo en la ubicacion indicada
      * @param string $rutaDestino donde se guardara el archivo
@@ -102,6 +118,7 @@ class File{
             throw new FileException(getErrorString(ERROR_MV_UP_FILE));
         }
     }
+    
     
     /**
      * 

@@ -34,7 +34,7 @@ abstract class  QueryBuilder{
     /**
      * 
      * Obtiene los registros de la tabla utilizando la sentendia de MySQL
-     * Conectandose a la base de datos utilizando la clse Connection
+     * Conectandose a la base de datos utilizando la clase Connection
      * @return array
      */
     public function findAll(){
@@ -108,22 +108,6 @@ abstract class  QueryBuilder{
 
 
        
-    }
-    /**
-     * @param callable $fnExecuteQuerys
-     */
-    public function executeTransaction(callable $fnExecuteQuerys){
-        try{
-            $this->connection->beginTransaction();
-            $fnExecuteQuerys(); //llamo al callable para que ejecute todas
-                                //las operaciones que sean necesarias realizar
-
-            $this->connection->commit(); //Para confirmar las operaciones pendientes y ejecutar
-
-        }catch(PDOException $pdoException){
-            $this->connection->rollBack();
-            throw new QueryException('No se ha podido realizar la operacion');
-        }
     }
     
 
