@@ -6,15 +6,16 @@ require_once 'entities/repository/asociadoRepository.class.php';
 require_once 'entities/connection.class.php';
 require_once 'exceptions/appException.class.php';
 require_once 'exceptions/FileException.class.php';
+require_once 'entities/Partner.class.php';
 
 $errores=[];
 $descripcion='';
 $mensaje='';
 
 try{
-    $config=require_once'app/config.php';
+    //$config=require_once'app/config.php';
 
-    App::bind('config',$config);
+    //App::bind('config',$config);
 
     $partnerRepositorio= new AsociadoRepositorio();
 

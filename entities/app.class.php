@@ -1,6 +1,7 @@
 <?php
 require_once 'exceptions/appException.class.php';
 require_once 'utils/const.php';
+require_once 'entities/connection.class.php';
 class App{
 
     private static $container=[];
@@ -17,7 +18,7 @@ class App{
     }
     public static function getConnection(){
         if(!array_key_exists('connection',self::$container)){
-            self::$container['connection']=Connection::make();
+            self::$container['connection']= Connection::make();
             
         }
         return static::$container['connection'];

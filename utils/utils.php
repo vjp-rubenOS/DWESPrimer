@@ -1,9 +1,6 @@
 <?php
-
-
 // Funcion que determina si la opcion del menu actual esta activa 
 // Recibe por parametro un string que es la URL de una de las opciones del menu
-
 function esOpcionMenuActiva(string $opcionMenu): bool
 {
     // Compara la URL actual de la pagina ($_SERVER['REQUEST_URI']) con la opción del menu

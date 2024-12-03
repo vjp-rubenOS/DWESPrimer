@@ -16,9 +16,9 @@ $texto = '';
 
 try {
     // Carga la configuracion de la aplicacion desde el archivo
-    $config = require_once 'app/config.php';
+    //$config = require_once 'app/config.php';
     // Asocia la configuración al contenedor
-    App::bind('config', $config);
+    //App::bind('config', $config);
     // Instancia de la clase MensajeRepositorio
     $mensajeRepository = new MensajeRepositorio();
     // Comprobacion de si la solicitud fue enviada (tipo POST)

@@ -16,37 +16,37 @@
       <ul class="nav navbar-nav">
         <!-- Utilizacion de las funciones para comprobar si la URL coincide con la opcion  procedentes de utils-->
         <li class="<?php echo esOpcionMenuActiva("/index.php") ? "active" : "" ?> lien">
-          <a href="<?php echo esOpcionMenuActiva("/index.php") ? "#" : "index.php" ?>">
+          <a href="<?php echo esOpcionMenuActiva("/index.php") ? "#" : "/" ?>">
             <i class="fa fa-home sr-icons"></i> Home
           </a>
         </li>
         <!-- Utilizacion de las funciones para comprobar si la URL coincide con la opcion  procedentes de utils-->
         <li class="<?php echo esOpcionMenuActiva("/about.php") ? "active" : "" ?> lien">
-          <a href="<?php echo esOpcionMenuActiva("/about.php") ? "#" : "about.php" ?>">
+          <a href="<?php echo esOpcionMenuActiva("/about.php") ? "#" : "/about" ?>">
             <i class="fa fa-bookmark sr-icons"></i> About
           </a>
         </li>
         <!-- Utilizacion de las funciones para comprobar si la URL coincide con una de las dos opcion  procedentes de utils-->
         <li class="<?php echo existeOpcionMenuActivaEnArray(['/blog.php', '/single_post.php']) ? 'active' : '' ?> lien">
-          <a href="<?php echo esOpcionMenuActiva("/blog.php") ? "#" : "blog.php" ?>">
+          <a href="<?php echo esOpcionMenuActiva("/blog.php") ? "#" : "/blog" ?>">
             <i class="fa fa-file-text sr-icons"></i> Blog
           </a>
         </li>
         <!-- Utilizacion de las funciones para comprobar si la URL coincide con la opcion  procedentes de utils-->
         <li class="<?php echo esOpcionMenuActiva("/contact.php") ? "active" : "" ?>lien">
-          <a href="<?php echo esOpcionMenuActiva("/contact.php") ? "#" : "contact.php" ?>">
+          <a href="<?php echo esOpcionMenuActiva("/contact.php") ? "#" : "/contact" ?>">
             <i class="fa fa-phone-square sr-icons"></i> Contact
           </a>
           <!-- este lo hemos añadido despues-->
            <!-- Utilizacion de las funciones para comprobar si la URL coincide con la opcion  procedentes de utils-->
           <li class="<?php echo esOpcionMenuActiva("/galeria.php") ? "active" : "" ?>lien">
-          <a href="<?php echo esOpcionMenuActiva("/galeria.php") ? "#" : "galeria.php" ?>">
+          <a href="<?php echo esOpcionMenuActiva("/galeria.php") ? "#" : "/galeria" ?>">
             <i class="fa fa-image sr-icons"></i> Gallery
           </a>
           <!-- este lo hemos añadido despues-->
            <!-- Utilizacion de las funciones para comprobar si la URL coincide con la opcion  procedentes de utils-->
           <li class="<?php echo esOpcionMenuActiva("/partners.php") ? "active" : "" ?>lien">
-          <a href="<?php echo esOpcionMenuActiva("/partners.php") ? "#" : "partners.php" ?>">
+          <a href="<?php echo esOpcionMenuActiva("/partners.php") ? "#" : "/partners" ?>">
             <i class="fa fa-hand-o-right sr-icons"></i> Partners
           </a>
         </li>
