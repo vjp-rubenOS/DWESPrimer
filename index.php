@@ -1,8 +1,20 @@
 <?php 
+
 require_once 'utils/bootstrap.php';
 
-$routes= require 'utils/routes.php';
-$uri=trim($_SERVER['REQUEST_URI'],'/');
-require $routes[$uri];
+//$router= new Router();
+
+//$routes= require 'utils/routes.php';
+//$uri=trim($_SERVER['REQUEST_URI'],'/'); quitado y ponemos lo de dentro de routes[]
+
+
+try{
+    require Router::load('utils/routes.php')-> direct(Request::uri());
+
+}catch(Exception $e){
+    die($e->getMessage());
+
+
+}
 
 ?>

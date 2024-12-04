@@ -1,6 +1,7 @@
 <?php
 
-return[
+
+$router->define([
     ''=>'controllers/index.php',
     'about'=>'controllers/about.php',
     'blog'=>'controllers/blog.php',
@@ -10,7 +11,7 @@ return[
     'post'=>'controllers/single_post.php'
 
 
-    ]
+    ])
 
 
 ?>
