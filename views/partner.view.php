@@ -29,7 +29,7 @@
             <?php endif; ?>
 
 
-            <form class="form-horizontal" method="post" enctype="multipart/form-data" action=<?php $_SERVER['PHP_SELF'] ?>>
+            <form class="form-horizontal" method="post" enctype="multipart/form-data" ><!--action=<?php $_SERVER['PHP_SELF'] ?>-->
                 <div class="form-group">
                     <div class="col-xs-12">
                         <label class="label-control">Nombre</label>
