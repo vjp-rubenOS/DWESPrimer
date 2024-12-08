@@ -14,43 +14,36 @@
     </div>
     <div class="collapse navbar-collapse navbar-right" id="menu">
       <ul class="nav navbar-nav">
-        <!-- Utilizacion de las funciones para comprobar si la URL coincide con la opcion  procedentes de utils-->
-        <li class="<?php echo esOpcionMenuActiva("/index.php") ? "active" : "" ?> lien">
-          <a href="<?php echo esOpcionMenuActiva("/index.php") ? "#" : "/" ?>">
-            <i class="fa fa-home sr-icons"></i> Home
-          </a>
+
+        <li class="<?php echo esOpcionMenuActiva('/') ? "active" : "" ?> lien">
+          <a href="<?php echo esOpcionMenuActiva('/') ? "#" : "/" ?>">
+            <i class="fa fa-home sr-icons"></i> Home</a>
         </li>
-        <!-- Utilizacion de las funciones para comprobar si la URL coincide con la opcion  procedentes de utils-->
-        <li class="<?php echo esOpcionMenuActiva("/about.php") ? "active" : "" ?> lien">
-          <a href="<?php echo esOpcionMenuActiva("/about.php") ? "#" : "/about" ?>">
+        <li class="<?php echo esOpcionMenuActiva('/about') ? "active" : "" ?> lien">
+          <a href="<?php echo esOpcionMenuActiva('/about') ? "#" : "/about" ?>">
             <i class="fa fa-bookmark sr-icons"></i> About
           </a>
         </li>
-        <!-- Utilizacion de las funciones para comprobar si la URL coincide con una de las dos opcion  procedentes de utils-->
-        <li class="<?php echo existeOpcionMenuActivaEnArray(['/blog.php', '/single_post.php']) ? 'active' : '' ?> lien">
-          <a href="<?php echo esOpcionMenuActiva("/blog.php") ? "#" : "/blog" ?>">
-            <i class="fa fa-file-text sr-icons"></i> Blog
-          </a>
+        <li class="<?php echo existeOpcionMenuActivaEnArray(['/blog', '/single_post']) ? "active" : "" ?> lien">
+          <a href="<?php echo esOpcionMenuActiva('/blog') ? "#" : "/blog" ?>">
+            <i class="fa fa-file-text sr-icons"></i> Blog</a>
         </li>
-        <!-- Utilizacion de las funciones para comprobar si la URL coincide con la opcion  procedentes de utils-->
-        <li class="<?php echo esOpcionMenuActiva("/contact.php") ? "active" : "" ?>lien">
-          <a href="<?php echo esOpcionMenuActiva("/contact.php") ? "#" : "/contact" ?>">
-            <i class="fa fa-phone-square sr-icons"></i> Contact
-          </a>
-          <!-- este lo hemos añadido despues-->
-           <!-- Utilizacion de las funciones para comprobar si la URL coincide con la opcion  procedentes de utils-->
-          <li class="<?php echo esOpcionMenuActiva("/galeria.php") ? "active" : "" ?>lien">
-          <a href="<?php echo esOpcionMenuActiva("/galeria.php") ? "#" : "/galeria" ?>">
-            <i class="fa fa-image sr-icons"></i> Gallery
-          </a>
-          <!-- este lo hemos añadido despues-->
-           <!-- Utilizacion de las funciones para comprobar si la URL coincide con la opcion  procedentes de utils-->
-          <li class="<?php echo esOpcionMenuActiva("/partners.php") ? "active" : "" ?>lien">
-          <a href="<?php echo esOpcionMenuActiva("/partners.php") ? "#" : "/partners" ?>">
-            <i class="fa fa-hand-o-right sr-icons"></i> Partners
-          </a>
+        <li class="<?php echo esOpcionMenuActiva('/contact') ? "active" : "" ?> lien">
+          <a href="<?php echo esOpcionMenuActiva('/contact') ? "#" : "/contact" ?>">
+            <i class="fa fa-phone-square sr-icons"></i> Contact</a>
+        </li>
+        <li class="<?php echo esOpcionMenuActiva('/gallery') ? "active lien" : "" ?> lien">
+          <a href="<?php echo esOpcionMenuActiva('/gallery') ? "#" : "/gallery" ?>">
+            <i class="fa fa-image sr-icons"></i> Gallery</a>
+        </li>
+        <li class="<?php echo esOpcionMenuActiva('/asociado') ? "active" : "" ?> lien">
+          <a href="<?php echo esOpcionMenuActiva('/asociado') ? "#" : "/asociado" ?>">
+            <i class="fa fa-hand-o-right"></i> Asociados</a>
         </li>
       </ul>
     </div>
   </div>
 </nav>
+
+
+<!-- End of Navigation Bar -->
